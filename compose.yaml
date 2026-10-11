@@ -1,0 +1,15 @@
+services:
+  hotel-lens:
+    build: .
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8000:8000"
+    volumes:
+      - hotel-data:/data
+    environment:
+      APP_PASSWORD: ${APP_PASSWORD:-}
+      MAX_IMPORT_HOTELS: ${MAX_IMPORT_HOTELS:-500}
+      MAX_PRICE_REQUESTS_PER_HOTEL: ${MAX_PRICE_REQUESTS_PER_HOTEL:-16}
+    shm_size: 256mb
+    restart: unless-stopped
+volumes:
+  hotel-data:

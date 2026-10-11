@@ -1,0 +1,11 @@
+__pycache__
+.venv
+.git
+*.zip
+screenshots
+.pytest_cache
+data/*-wal
+data/*-shm
+
+reports
+tests

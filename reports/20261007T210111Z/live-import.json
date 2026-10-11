@@ -1,0 +1,1011 @@
+{
+  "ok": 190,
+  "complete": 189,
+  "incomplete": 1,
+  "warnings": [
+    {
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/asterias-beach-hotel?DS=8192&GIATA=5020&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=753&PF=0&PT=200000&MT=5&MMT=5&DI=AI&RCS=FR01&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-19&DD=2027-08-09&ERM=0&AC1=2&KC1=2&KA1=8%7C6&IC1=0&TO=4312&TT=1&PID=LCA40047&DPR=EXIM+TOURS+ATCOM&ILM=0&IFM=0&PC=198064203%2F2%2F2777%2F10&IFC=203418702%2F632755&OFC=203397504%2F632754",
+      "messages": [
+        "EXIM pro tuto nabídku neposkytl popis pokojů. Uložena pouze metadata hotelu; vhodnost nelze posoudit.",
+        "Ve zdroji chybí podrobný popis pláže; plážové vlastnosti zůstávají neuvedené."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/kefalonie/kounopetra/thalassa-superior?DS=8192&GIATA=143406&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=145619&PF=0&PT=200000&MT=5&MMT=5&DI=AI&RCS=DR01&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-18&DD=2027-08-08&ERM=0&AC1=2&KC1=2&KA1=8%7C6&IC1=0&TO=4312&TT=1&PID=EFL90019&DPR=EXIM+TOURS+ATCOM&ILM=0&IFM=0&PC=7533691%2F2%2F2776%2F10&IFC=196306607%2F597602&OFC=196322776%2F597601",
+      "messages": [
+        "Typy pokojů nelze bezpečně oddělit; uložen původní popis bez automatických pokojových faktů."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/atlantica-sungarden-beach?DS=256&GIATA=22400&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=763&PF=0&PT=200000&MT=5&MMT=5&DI=AI&RCS=FR01&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-19&DD=2027-08-09&ERM=0&AC1=2&KC1=2&KA1=8%7C6&IC1=0&TO=4312&TT=1&PID=LCA90031&DPR=FISCHER+ATCOM&ILM=0&IFM=0&PC=16922527%2F2%2F2777%2F10&IFC=203418702%2F632755&OFC=203397504%2F632754",
+      "messages": [
+        "Typy pokojů nelze bezpečně oddělit; uložen původní popis bez automatických pokojových faktů."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-dorada/la-pineda/apartmentos-estival-park?DS=2&GIATA=608755&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=147890&PF=0&PT=200000&MT=5&MMT=5&DI=GT06-AI&RCS=APSDT100A0&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-23%7C2027-08-22&RD=2027-08-02&DD=2027-07-23&ERM=0&AC1=2&KC1=2&KA1=8%7C6&IC1=0&TO=4312&TT=1&PID=AESBCDE4RW&DPR=OTSCKF&ILM=0&IFM=0&PC=10-2027-07-23&IFC=1-BCNPRGC-4453-BCN-DT02-08-11-00-Y-DE-4480-FRA-DT02-08-11-00-Y-DE&OFC=1-PRGBCNB-4485-PRG-DT23-07-17-20-Y-DE-4450-FRA-DT23-07-17-20-Y-DE",
+      "messages": [
+        "Typy pokojů nelze bezpečně oddělit; uložen původní popis bez automatických pokojových faktů."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/cala-d-or/marsenses-ferrera-blanca-hotel?DS=2&GIATA=50041&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=242352&PF=0&PT=200000&MT=5&MMT=5&DI=GT06-AI&RCS=1415.STD&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-23%7C2027-08-22&RD=2027-08-02&DD=2027-07-23&ERM=0&AC1=2&KC1=2&KA1=8%7C6&IC1=0&TO=4312&TT=1&PID=10231&DPR=SUNH&ILM=0&IFM=0&PC=10-2027-07-23&IFC=0-PMIPRG-1165-DT02-08-21-20-W&OFC=0-PRGPMI-1164-DT23-07-18-00-W",
+      "messages": [
+        "Typy pokojů nelze bezpečně oddělit; uložen původní popis bez automatických pokojových faktů."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/torremolinos/riu-costa-del-sol?DS=2&GIATA=2502&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=143243&PF=0&PT=200000&MT=5&MMT=5&DI=GT06-AI&RCS=3019.STD&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-22&DD=2027-08-12&ERM=0&AC1=2&KC1=2&KA1=8%7C6&IC1=0&TO=4312&TT=1&PID=415239&DPR=SUNH&ILM=0&IFM=0&PC=10-2027-08-12&IFC=0-AGPPRG-1155-DT22-08-10-10-U&OFC=0-PRGAGP-1154-DT12-08-06-00-U",
+      "messages": [
+        "Typy pokojů nelze bezpečně oddělit; uložen původní popis bez automatických pokojových faktů.",
+        "Ve zdroji chybí podrobný popis pláže; plážové vlastnosti zůstávají neuvedené."
+      ]
+    }
+  ],
+  "errors": [],
+  "discovery": [],
+  "discovered": 190,
+  "attempted": 190,
+  "note": "Seznam: všechny stránky JSON API s kontrolou počtu a opakování. Detaily: HTTP HTML bez prohlížeče. Neúplné nebo nestabilní stránkování se zastaví s chybou.",
+  "integrity": "ok",
+  "counts": {
+    "hotels": 190,
+    "rooms": 931,
+    "sources": 190
+  },
+  "seconds": 298.218643314,
+  "source": "https://www.eximtours.cz/vysledky-vyhledavani?ac1=2&bt=49&d=63215|63287|63296|63410|63426|63542|63582|63581|63580|63220|63281|63283|63311|63314|63316|63319|63324|63333|63336|63364|63472|63390|63402|63408|63409|63442|63471|63213|211764|63241|63242|213028|63243|63244|63245|74459|74460|63284|74464|63350|63354|74465|63212|63539|63229|63255|64428|64427|63271|63298|63330|63329|63339|63356|63436|63376|63391|63406|63425|63429|63444|63537|63453|63454|63456|63457|63459|63219|63341|63362|63428|63226|63267|74463|63349|63455&dd=2027-07-24&ka1=8|6&kc1=2&m=5&nn=10|11|12|13|14|15&pt=200000&qf=109_0_300&rd=2027-08-22&ri=4|5&sortby=Rating.TrustYou&sortorder=1&to=4312&tt=1",
+  "fetched": "2026-10-07T21:06:25+00:00",
+  "hotels": [
+    {
+      "name": "Vantaris Palace",
+      "url": "https://www.eximtours.cz/recko/kreta/georgioupolis/hotel-vantaris-palace",
+      "rooms": 10
+    },
+    {
+      "name": "Iberostar Waves Club Cala Barca ",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/cala-d-or/iberostar-cala-barca",
+      "rooms": 10
+    },
+    {
+      "name": "MITSIS FALIRAKI",
+      "url": "https://www.eximtours.cz/recko/rhodos/faliraki/mitsis-faliraki-beach-hotel-a-spa",
+      "rooms": 7
+    },
+    {
+      "name": "High Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/hotel-high-beach",
+      "rooms": 9
+    },
+    {
+      "name": "Mythos Palace Resort & Spa",
+      "url": "https://www.eximtours.cz/recko/kreta/kavros/mythos-palace-resort-a-spa",
+      "rooms": 7
+    },
+    {
+      "name": "Alexandra Golden",
+      "url": "https://www.eximtours.cz/recko/thassos/skala-potamias/alexandra-golden-boutique",
+      "rooms": 5
+    },
+    {
+      "name": "Vantaris Luxury Beach Resort",
+      "url": "https://www.eximtours.cz/recko/kreta/georgioupolis/hotel-vantaris-beach",
+      "rooms": 9
+    },
+    {
+      "name": "Playa Garden",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/playa-de-muro/hotel-playa-garden-playa-de-muro",
+      "rooms": 9
+    },
+    {
+      "name": "Theartemis Palace",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/misiria/theartemis-palace",
+      "rooms": 13
+    },
+    {
+      "name": "Knossos Beach Bungalows Suites Resort & SPA",
+      "url": "https://www.eximtours.cz/recko/kreta/kokini-hani/knossos-beach-bungalows-a-suites",
+      "rooms": 8
+    },
+    {
+      "name": "Estival Islantilla",
+      "url": "https://www.eximtours.cz/spanelsko/costa-de-la-luz/estival-islantilla",
+      "rooms": 3
+    },
+    {
+      "name": "Eliros Mare",
+      "url": "https://www.eximtours.cz/recko/kreta/georgioupolis/eliros-mare",
+      "rooms": 7
+    },
+    {
+      "name": "Serenusa Resort",
+      "url": "https://www.eximtours.cz/italie/sicilie/licata/serenusa-village",
+      "rooms": 1
+    },
+    {
+      "name": "Ibiscos Garden",
+      "url": "https://www.eximtours.cz/recko/kreta/rethymnon/ibiscos-garden-hotel",
+      "rooms": 4
+    },
+    {
+      "name": "Kalyves Beach Hotel",
+      "url": "https://www.eximtours.cz/recko/kreta/kalyves/kalyves-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Arion Green Riviera",
+      "url": "https://www.eximtours.cz/recko/zakynthos/vassilikos/arion-green-riviera",
+      "rooms": 4
+    },
+    {
+      "name": "Vangelis Suites",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/protaras/vangelis-suites",
+      "rooms": 3
+    },
+    {
+      "name": "Kalogria Beach",
+      "url": "https://www.eximtours.cz/recko/pelopones/kalogria/kalogria-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Margadina",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/margadina-loungh-hotel",
+      "rooms": 6
+    },
+    {
+      "name": "Aldemar Olympian Village",
+      "url": "https://www.eximtours.cz/recko/pelopones/skafidia/funtazie-klub-aldemar-olympian-village",
+      "rooms": 7
+    },
+    {
+      "name": "CLUB CALIMERA SIRENS BEACH",
+      "url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/club-calimera-sirens-beach-recko",
+      "rooms": 6
+    },
+    {
+      "name": "Louis Althea Beach",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/protaras/louis-althea-beach-hotel",
+      "rooms": 5
+    },
+    {
+      "name": "db San Antonio Hotel & Spa",
+      "url": "https://www.eximtours.cz/hotely/malta/ostrov-malta/qawra/hotel-san-antonio",
+      "rooms": 6
+    },
+    {
+      "name": "Blue Sea Beach Affiliated by Melia",
+      "url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/blue-sea-beach",
+      "rooms": 12
+    },
+    {
+      "name": "Paradise Resort",
+      "url": "https://www.eximtours.cz/recko/pelopones/finikounda/paradise-resort",
+      "rooms": 6
+    },
+    {
+      "name": "Elba Sara Beach and Golf Resort",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/caleta-de-fuste/elba-sara-beach-a-golf-resort",
+      "rooms": 7
+    },
+    {
+      "name": "Agapi Beach Resort",
+      "url": "https://www.eximtours.cz/recko/kreta/heraklion/hotel-agapi-beach",
+      "rooms": 11
+    },
+    {
+      "name": "Elba Sara Beach & Golf Resort",
+      "url": "https://www.eximtours.cz/spanelsko/fuerteventura/caleta-de-fuste/elba-sara-beach-a-golf-resort",
+      "rooms": 7
+    },
+    {
+      "name": "Pernera Beach",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/protaras/pernera-beach-hotel",
+      "rooms": 9
+    },
+    {
+      "name": "Cavo Maris Beach",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/protaras/cavo-maris-beach-hotel",
+      "rooms": 8
+    },
+    {
+      "name": "Mitsis Bali Paradise ",
+      "url": "https://www.eximtours.cz/recko/kreta/bali/bali-paradise-by-mitsis",
+      "rooms": 12
+    },
+    {
+      "name": "Atlantica Sancta Napa",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/atlantica-sancta-napa",
+      "rooms": 5
+    },
+    {
+      "name": "Caravia Beach",
+      "url": "https://www.eximtours.cz/recko/kos/marmari/hotel-caravia-beach",
+      "rooms": 4
+    },
+    {
+      "name": "Louis Althea Beach",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/louis-althea-beach-hotel",
+      "rooms": 5
+    },
+    {
+      "name": "Civitel Creta Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/heraklion/civitel-creta-beach",
+      "rooms": 11
+    },
+    {
+      "name": "Elba Carlota Beach & Golf resort",
+      "url": "https://www.eximtours.cz/spanelsko/fuerteventura/caleta-de-fuste/hotel-elba-carlota",
+      "rooms": 6
+    },
+    {
+      "name": "MarSenses Ferrera Blanca Hotel Family",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/cala-d-or/marsenses-ferrera-blanca-family-hotel",
+      "rooms": 9
+    },
+    {
+      "name": "Almyros Beach Resort & SPA",
+      "url": "https://www.eximtours.cz/recko/korfu/acharavi/almyros-beach-resort",
+      "rooms": 5
+    },
+    {
+      "name": "Cavo Maris Beach",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/cavo-maris-beach-hotel",
+      "rooms": 8
+    },
+    {
+      "name": "Monarque Torreblanca",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/fuengirola/torreblanca",
+      "rooms": 1
+    },
+    {
+      "name": "Impressive Playa Granada Golf",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/motril/playa-granada-club-resort",
+      "rooms": 4
+    },
+    {
+      "name": "St.Raphael Resort",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/limassol/st-raphael-resort-hotel",
+      "rooms": 7
+    },
+    {
+      "name": "Pilot Beach Resort",
+      "url": "https://www.eximtours.cz/recko/kreta/georgioupolis/hotel-pilot-beach-resort",
+      "rooms": 8
+    },
+    {
+      "name": "Asterias Beach",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/asterias-beach-hotel",
+      "rooms": 0
+    },
+    {
+      "name": "Blue Sea Beach Affiliated by Melia",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/stalis-malia-a-stalida/blue-sea-beach",
+      "rooms": 12
+    },
+    {
+      "name": "Iberostar Waves Ciudad Blanca",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/alcudia/iberostar-ciudad-blanca",
+      "rooms": 9
+    },
+    {
+      "name": "Serene Resort",
+      "url": "https://www.eximtours.cz/italie/kalabrie/marinella-di-cutro/serene-resort",
+      "rooms": 1
+    },
+    {
+      "name": "Katrin Hotel & Bungalows (Enalia Katrin Serenity Hotel)",
+      "url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/kathrin-hotel-a-bungalows",
+      "rooms": 10
+    },
+    {
+      "name": "SENTIDO OROSEI BEACH",
+      "url": "https://www.eximtours.cz/italie/sardinie/orosei/sentido-orosei-beach",
+      "rooms": 2
+    },
+    {
+      "name": "Alea Hotel & Suites",
+      "url": "https://www.eximtours.cz/recko/thassos/skala-prinos/alea-a-suites",
+      "rooms": 7
+    },
+    {
+      "name": "Aktea Beach Village",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/ayia-napa/aktea-beach-village",
+      "rooms": 2
+    },
+    {
+      "name": "Zante Sun",
+      "url": "https://www.eximtours.cz/recko/zakynthos/agios-sostis/hotel-zante-sun",
+      "rooms": 3
+    },
+    {
+      "name": "Alexandre hotel La Siesta",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/playa-de-las-americas/la-siesta",
+      "rooms": 3
+    },
+    {
+      "name": "Occidental Torremolinos Playa (Ex SMY)",
+      "url": "https://www.eximtours.cz/hotely/spanielsko/andaluzia/torremolinos/pueblo-camino-real-10-11",
+      "rooms": 4
+    },
+    {
+      "name": "VOI BAIA DI TINDARI RESORT",
+      "url": "https://www.eximtours.cz/italie/sicilie/tindari/voi-baia-di-tindari-resort",
+      "rooms": 3
+    },
+    {
+      "name": "Magic Villa Luz Family Gourmet Hotel",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/valencie/villa-luz-family-gourmet-a-all-exclusive-hotel",
+      "rooms": 4
+    },
+    {
+      "name": "VOI ARENELLA RESORT",
+      "url": "https://www.eximtours.cz/italie/sicilie/syrakusy/voi-arenella-resort",
+      "rooms": 8
+    },
+    {
+      "name": "Evalena Beach Hotel",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/evalena-beach",
+      "rooms": 5
+    },
+    {
+      "name": "Apollo Blue",
+      "url": "https://www.eximtours.cz/recko/rhodos/faliraki/apollo-blue",
+      "rooms": 5
+    },
+    {
+      "name": "Cavo Orient Beach Resort",
+      "url": "https://www.eximtours.cz/recko/zakynthos/drosia/cavo-orient",
+      "rooms": 13
+    },
+    {
+      "name": "Thalassa Superior",
+      "url": "https://www.eximtours.cz/recko/kefalonie/kounopetra/thalassa-superior",
+      "rooms": 8
+    },
+    {
+      "name": "Globales Almirante Farragut",
+      "url": "https://www.eximtours.cz/spanelsko/menorca/ciutadella/globales-almirante-farragut",
+      "rooms": 2
+    },
+    {
+      "name": "Portes Beach",
+      "url": "https://www.eximtours.cz/recko/chalkidiki/potidea/portes-beach",
+      "rooms": 1
+    },
+    {
+      "name": "Sunrise Beach Resort",
+      "url": "https://www.eximtours.cz/recko/rhodos/lindos/hotel-primasol-sunrise",
+      "rooms": 10
+    },
+    {
+      "name": "Ionian Sea villas & Aqua Park",
+      "url": "https://www.eximtours.cz/recko/kefalonie/kounopetra/ionian-sea-villas-a-aqua-park",
+      "rooms": 3
+    },
+    {
+      "name": "Alykanas Beach",
+      "url": "https://www.eximtours.cz/recko/zakynthos/alikanas/funtazie-klub-alykanas-beach",
+      "rooms": 4
+    },
+    {
+      "name": "Cactus Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalidacactus-beach",
+      "rooms": 4
+    },
+    {
+      "name": "Hipotels Coma Gran",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/sa-coma/hipotels-coma-gran",
+      "rooms": 1
+    },
+    {
+      "name": "Atlantica Sungarden Beach",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/atlantica-sungarden-beach",
+      "rooms": 7
+    },
+    {
+      "name": "ZH Neptuno Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/heraklion/hotel-neptuno-beach-resort",
+      "rooms": 8
+    },
+    {
+      "name": "Golden Acqua Salou ",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-dorada/salou/acqua-salou",
+      "rooms": 2
+    },
+    {
+      "name": "Nestor",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/nestor",
+      "rooms": 5
+    },
+    {
+      "name": "Sandy Beach",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/larnaca/sandy-beach",
+      "rooms": 9
+    },
+    {
+      "name": "Star Beach Village",
+      "url": "https://www.eximtours.cz/recko/kreta/hersonissos/star-beach",
+      "rooms": 7
+    },
+    {
+      "name": "Nestor Hotel",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/ayia-napa/nestor",
+      "rooms": 5
+    },
+    {
+      "name": "Golden Donaire Beach",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-dorada/la-pineda/golden-donaire-beach",
+      "rooms": 4
+    },
+    {
+      "name": "Pavlo Napa Beach Hotel",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/ayia-napa/pavlo-napa-beach",
+      "rooms": 4
+    },
+    {
+      "name": "Sentido Sandy Beach Hotel",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/larnaca/sandy-beach",
+      "rooms": 9
+    },
+    {
+      "name": "Iolida Beach Hotel",
+      "url": "https://www.eximtours.cz/recko/kreta/agia-marina/iolida-beach",
+      "rooms": 4
+    },
+    {
+      "name": "EVENIA ZORAIDA BEACH RESORT",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/costa-almeria/evenia-zoraida-resort",
+      "rooms": 1
+    },
+    {
+      "name": "Atlantica Callisto",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/atlantica-callisto",
+      "rooms": 5
+    },
+    {
+      "name": "Sotavento Beach - ..",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/costa-calma/sotavento-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Playacapricho",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/costa-almeria/hotel-playacapricho",
+      "rooms": 4
+    },
+    {
+      "name": "RODA BEACH RESORT & SPA",
+      "url": "https://www.eximtours.cz/recko/korfu/roda/roda-beach-resort-a-spa",
+      "rooms": 7
+    },
+    {
+      "name": "Playazimbali",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/zimbali-playa-spa",
+      "rooms": 3
+    },
+    {
+      "name": "Lagos de Fanabe",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/costa-adeje/lagos-de-fanabe",
+      "rooms": 5
+    },
+    {
+      "name": "Grecotel Casa Paradiso",
+      "url": "https://www.eximtours.cz/recko/kos/marmari/hotel-grecotel-royal-park",
+      "rooms": 13
+    },
+    {
+      "name": "Caldera Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/platanias/atlantica-caldera-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Hipotels Mediterraneo Club",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/sa-coma/hipotels-mediterraneo-club",
+      "rooms": 4
+    },
+    {
+      "name": "Lagos de Fanabé Beach Resort",
+      "url": "https://www.eximtours.cz/spanelsko/tenerife/costa-adeje/lagos-de-fanabe",
+      "rooms": 5
+    },
+    {
+      "name": "Sol Falcó Menorca",
+      "url": "https://www.eximtours.cz/spanelsko/menorca/cala-n-bosch/sol-falco",
+      "rooms": 3
+    },
+    {
+      "name": "Alexandre Hotel Troya",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/costa-adeje/troya",
+      "rooms": 6
+    },
+    {
+      "name": "Troya",
+      "url": "https://www.eximtours.cz/spanelsko/tenerife/costa-adeje/troya",
+      "rooms": 6
+    },
+    {
+      "name": "Magic Aqua Rock Gardens",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-blanca/benidorm/magic-aqua-rock-gardens",
+      "rooms": 15
+    },
+    {
+      "name": "Bella Beach Resort",
+      "url": "https://www.eximtours.cz/recko/kreta/anissaras/bella-beach",
+      "rooms": 6
+    },
+    {
+      "name": "H10 Tindaya",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/costa-calma/h10-tindaya",
+      "rooms": 5
+    },
+    {
+      "name": "H10 Tindaya",
+      "url": "https://www.eximtours.cz/spanelsko/fuerteventura/costa-calma/h10-tindaya",
+      "rooms": 5
+    },
+    {
+      "name": "Seth Punta Prima",
+      "url": "https://www.eximtours.cz/spanelsko/menorca/punta-prima/occidental-menorca",
+      "rooms": 2
+    },
+    {
+      "name": "Iolida Beach",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/agia-marina/iolida-beach",
+      "rooms": 4
+    },
+    {
+      "name": "Hipotels Mediterraneo Club",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/sa-coma/hipotels-mediterraneo-club",
+      "rooms": 4
+    },
+    {
+      "name": "Sol Lanzarote",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/lanzarote/puerto-del-carmen/hotel-sol-lanzarote",
+      "rooms": 3
+    },
+    {
+      "name": "NICOLAUS CLUB TORRE MORESCA",
+      "url": "https://www.eximtours.cz/italie/sardinie/orosei/nicolaus-club-torre-moresca",
+      "rooms": 2
+    },
+    {
+      "name": "St. Constantin Beach Hotel & SPA Resort",
+      "url": "https://www.eximtours.cz/recko/kreta/gouves-analipis/hotel-st-constantin",
+      "rooms": 9
+    },
+    {
+      "name": "SMY KOS BEACH & SPLASH",
+      "url": "https://www.eximtours.cz/recko/kos/mastichari/smy-kos-beach-a-splash",
+      "rooms": 3
+    },
+    {
+      "name": "Porto Skala",
+      "url": "https://www.eximtours.cz/recko/kefalonie/skala/hotel-porto-skala",
+      "rooms": 5
+    },
+    {
+      "name": "Estival Park Apartments",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-dorada/la-pineda/apartmentos-estival-park",
+      "rooms": 1
+    },
+    {
+      "name": "Playadulce",
+      "url": "https://www.eximtours.cz/spanelsko/costa-de-almeria/roquetas-de-mar/playadulce",
+      "rooms": 5
+    },
+    {
+      "name": "Blue Aegean Hotel and Suites",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/gouves-analipis/blue-aegean-aparthotel",
+      "rooms": 9
+    },
+    {
+      "name": "Sol Marbella Estepona - Atalaya Park",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/estepona/sol-marbella-estepona-ex-atalaya-park",
+      "rooms": 1
+    },
+    {
+      "name": "Mediterraneo Bay Hotel Spa & Resort",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/costa-almeria/mediterraneo-bay",
+      "rooms": 6
+    },
+    {
+      "name": "Rosamar Garden Resort",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-brava/lloret-de-mar/rosamar-garden-resort",
+      "rooms": 2
+    },
+    {
+      "name": "Alua Suites Fuerteventura (Ex Suite Atlantis Fuerteventura)",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/corralejo/suite-hotel-atlantis-fuerteventura-resort",
+      "rooms": 4
+    },
+    {
+      "name": "Sol Katmandu Park and Resort",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/magalluf/sol-katmandu-park-a-resort",
+      "rooms": 5
+    },
+    {
+      "name": "TH COSTA REI - FREE BEACH VILLAGE",
+      "url": "https://www.eximtours.cz/italie/sardinie/costa-rei/th-costa-rei",
+      "rooms": 3
+    },
+    {
+      "name": "Barcelo Fuerteventura Castillo (Ex Barcelo Castillo Beach Resort)",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/caleta-de-fuste/barcelo-castillo-beach-resort",
+      "rooms": 1
+    },
+    {
+      "name": "Ona Marinas de Nerja Spa Resort",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/nerja/marinas-de-nerja-beach-a-spa-aparthotel",
+      "rooms": 1
+    },
+    {
+      "name": "Alma Resort",
+      "url": "https://www.eximtours.cz/italie/sardinie/costa-rei/alma-resort",
+      "rooms": 1
+    },
+    {
+      "name": "Dolce Attica Riviera",
+      "url": "https://www.eximtours.cz/hotely/recko/ateny-a-okoli/ateny/dolce-attica-riviera",
+      "rooms": 8
+    },
+    {
+      "name": "Odessa Hotel",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/odessa",
+      "rooms": 6
+    },
+    {
+      "name": "Balansat Resort",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/ibiza/porto-de-san-miguel/balansat-resort",
+      "rooms": 3
+    },
+    {
+      "name": "Arion Resort",
+      "url": "https://www.eximtours.cz/recko/zakynthos/vassilikos/arion-resort",
+      "rooms": 2
+    },
+    {
+      "name": "Jo-An Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/rethymnon/jo-an-beach",
+      "rooms": 8
+    },
+    {
+      "name": "Best Benalmadena",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/benalmadena-costa/hotel-best-benalmadena",
+      "rooms": 2
+    },
+    {
+      "name": "Sol Palmanova",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/palma-nova/sol-palmanova",
+      "rooms": 3
+    },
+    {
+      "name": "Playalinda Aquapark & Spa",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/costa-almeria/playalinda",
+      "rooms": 1
+    },
+    {
+      "name": "ILUNION PALMANOVA MALLORCA",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/magalluf/aluasun-torrenova-ex-marina-torrenova",
+      "rooms": 4
+    },
+    {
+      "name": "Apollonia Beach Resort & Spa",
+      "url": "https://www.eximtours.cz/recko/kreta/heraklion/apollonia-beach",
+      "rooms": 6
+    },
+    {
+      "name": "Globales Janeiro",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/can-picafort/hotel-janeiro",
+      "rooms": 4
+    },
+    {
+      "name": "TUI Magic Life Fuerteventura",
+      "url": "https://www.eximtours.cz/spanelsko/fuerteventura/playa-del-esquinzo/tui-magic-life-fuerteventura",
+      "rooms": 4
+    },
+    {
+      "name": "Sol Palmanova",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/palma-nova/sol-palmanova",
+      "rooms": 3
+    },
+    {
+      "name": "Best Benalmadena",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/benalmadena-costa/hotel-best-benalmadena",
+      "rooms": 2
+    },
+    {
+      "name": "Eurostars Las Salinas",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/caleta-de-fuste/eurostars-las-salinas",
+      "rooms": 6
+    },
+    {
+      "name": "Best Tenerife",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/playa-de-las-americas/best-tenerife",
+      "rooms": 1
+    },
+    {
+      "name": "Sol Fuerteventura Jandia - All suites",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/jandia/sol-fuerteventura-jandia",
+      "rooms": 2
+    },
+    {
+      "name": "Sol Principe",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/torremolinos/hotel-sol-principe",
+      "rooms": 3
+    },
+    {
+      "name": "Playasol Aquapark & Spa ",
+      "url": "https://www.eximtours.cz/spanelsko/costa-almeria/roquetas-de-mar/playasol-aquapark-spa",
+      "rooms": 4
+    },
+    {
+      "name": "CLUB HOTEL MARINA SEADA BEACH",
+      "url": "https://www.eximtours.cz/italie/sardinie/tanaunella/club-hotel-marina-seada-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Grupotel Flamingo Beach",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/lanzarote/playa-blanca/flamingo-beach",
+      "rooms": 1
+    },
+    {
+      "name": "Evita Bay ",
+      "url": "https://www.eximtours.cz/recko/rhodos/faliraki/evita-bay-faliraki",
+      "rooms": 6
+    },
+    {
+      "name": "Utopia Resort & Spa",
+      "url": "https://www.eximtours.cz/recko/kefallonie/skala/utopia-resort-a-spa",
+      "rooms": 3
+    },
+    {
+      "name": "Kalia Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/gouves-analipis/hotel-kalia-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Marilena",
+      "url": "https://www.eximtours.cz/recko/kreta/heraklion/hotel-marilena",
+      "rooms": 6
+    },
+    {
+      "name": "SUN BEACH LINDOS",
+      "url": "https://www.eximtours.cz/recko/rhodos/lardos/sun-beach-lindos-lardos",
+      "rooms": 2
+    },
+    {
+      "name": "Eurovillage Achilleas",
+      "url": "https://www.eximtours.cz/recko/kos/mastichari/eurovillage-achilleas",
+      "rooms": 4
+    },
+    {
+      "name": "Marilena Hotel",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/heraklion/hotel-marilena",
+      "rooms": 6
+    },
+    {
+      "name": "Paradise Bay Resort",
+      "url": "https://www.eximtours.cz/hotely/malta/ostrov-malta/cirkewwa/hotel-paradise-bay",
+      "rooms": 3
+    },
+    {
+      "name": "Sol Barbados",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/magalluf/sol-barbados-magalluf",
+      "rooms": 3
+    },
+    {
+      "name": "Tsokkos Paradise Village ",
+      "url": "https://www.eximtours.cz/kypr/jizni-kypr/ayia-napa/tsokkos-paradise-holiday-village",
+      "rooms": 2
+    },
+    {
+      "name": "LE DUNE BEACH CLUB",
+      "url": "https://www.eximtours.cz/italie/sicilie/mortelle/le-dune-beach-club",
+      "rooms": 1
+    },
+    {
+      "name": "Tsokkos Paradise Village",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/ayia-napa/tsokkos-paradise-holiday-village",
+      "rooms": 2
+    },
+    {
+      "name": "Sol Barbados",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/magalluf/sol-barbados-magalluf",
+      "rooms": 3
+    },
+    {
+      "name": "Playamarina Hotel",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-de-la-luz/playamarina-spa",
+      "rooms": 4
+    },
+    {
+      "name": "Playamarina",
+      "url": "https://www.eximtours.cz/spanelsko/costa-de-la-luz/playamarina-spa",
+      "rooms": 4
+    },
+    {
+      "name": "Globales America",
+      "url": "https://www.eximtours.cz/spanelsko/mallorca/calas-de-mallorca/globales-america",
+      "rooms": 4
+    },
+    {
+      "name": "Puente Real Hotel",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/torremolinos/puente-real",
+      "rooms": 4
+    },
+    {
+      "name": "Tsokkos Gardens Hotel",
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/tsokkos-garden",
+      "rooms": 1
+    },
+    {
+      "name": "Parasol by Dorobe",
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/torremolinos/hotel-parasol-garden",
+      "rooms": 2
+    },
+    {
+      "name": "CLUB HOTEL MARINA BEACH",
+      "url": "https://www.eximtours.cz/italie/sardinie/orosei/club-marina-beach",
+      "rooms": 1
+    },
+    {
+      "name": "IFA Altamarena by Lopesan",
+      "url": "https://www.eximtours.cz/spanelsko/fuerteventura/jandia/hotel-ifa-altamarena",
+      "rooms": 6
+    },
+    {
+      "name": "Altamarena",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/jandia/hotel-ifa-altamarena",
+      "rooms": 6
+    },
+    {
+      "name": "Amour Holiday Resort",
+      "url": "https://www.eximtours.cz/recko/korfu/sidari/amour-holiday-resort",
+      "rooms": 6
+    },
+    {
+      "name": "ASTIR PALACE",
+      "url": "https://www.eximtours.cz/recko/zakynthos/laganas/astir-palace",
+      "rooms": 4
+    },
+    {
+      "name": "ANNABELLE BEACH RESORT",
+      "url": "https://www.eximtours.cz/recko/kreta/hersonissos/annabelle-beach-resort",
+      "rooms": 5
+    },
+    {
+      "name": "Annabelle Beach Resort",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/hersonissos/annabelle-beach-resort",
+      "rooms": 5
+    },
+    {
+      "name": "Garden Palace",
+      "url": "https://www.eximtours.cz/recko/zakynthos/laganas/garden-palace",
+      "rooms": 2
+    },
+    {
+      "name": "Futura Club Baia di Conte",
+      "url": "https://www.eximtours.cz/italie/sardinie/alghero/futura-club-baia-di-conte",
+      "rooms": 3
+    },
+    {
+      "name": "SAINT GEORGE PALACE",
+      "url": "https://www.eximtours.cz/recko/korfu/agios-georgios/saint-george-palace",
+      "rooms": 6
+    },
+    {
+      "name": "CLUB ELORO",
+      "url": "https://www.eximtours.cz/italie/sicilie/lido-di-noto/eloro",
+      "rooms": 1
+    },
+    {
+      "name": "Ilyssion",
+      "url": "https://www.eximtours.cz/recko/rhodos/pefki/ilyssion",
+      "rooms": 5
+    },
+    {
+      "name": "Emerald by Azul Collection",
+      "url": "https://www.eximtours.cz/recko/kreta/adelianos-kampos/emerald-by-azul-collection",
+      "rooms": 3
+    },
+    {
+      "name": "MAREBELLO BEACH RESORT",
+      "url": "https://www.eximtours.cz/recko/kos/marmari/marebello-beach-resort",
+      "rooms": 1
+    },
+    {
+      "name": "Diogenis Blue Palace",
+      "url": "https://www.eximtours.cz/recko/kreta/gouves-analipis/diogenis-palace",
+      "rooms": 5
+    },
+    {
+      "name": "NINOS GRAND BEACH",
+      "url": "https://www.eximtours.cz/recko/zapadni-recko/preveza/ninos-grand-beach",
+      "rooms": 10
+    },
+    {
+      "name": "Aegean Collection",
+      "url": "https://www.eximtours.cz/recko/thassos/skala-rachoni/aegean-collection",
+      "rooms": 3
+    },
+    {
+      "name": "Amour Garden",
+      "url": "https://www.eximtours.cz/recko/korfu/sidari/amour-garden",
+      "rooms": 4
+    },
+    {
+      "name": "Sol by Meliá Marina Beach",
+      "url": "https://www.eximtours.cz/recko/kreta/gouves/marina-beach",
+      "rooms": 8
+    },
+    {
+      "name": "TH BAIA DEGLI DEI LE CASTELLA",
+      "url": "https://www.eximtours.cz/italie/kalabrie/marinella-di-cutrobaia-degli-dei",
+      "rooms": 1
+    },
+    {
+      "name": "Aeolian Village",
+      "url": "https://www.eximtours.cz/recko/lesbos/skala-eressou/aeolian-village-beach-resort",
+      "rooms": 5
+    },
+    {
+      "name": "Sitia Beach Resort and Spa",
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/sitia/sitia-beach-resort-and-spa",
+      "rooms": 5
+    },
+    {
+      "name": "Magic Fantasy",
+      "url": "https://www.eximtours.cz/spanelsko/costa-del-azahar/oropesa-del-mar/magic-fantasy",
+      "rooms": 1
+    },
+    {
+      "name": "Poseidon Beach",
+      "url": "https://www.eximtours.cz/recko/zakynthos/laganas/hotel-poseidon-beach",
+      "rooms": 3
+    },
+    {
+      "name": "Fuerteventura Princess",
+      "url": "https://www.eximtours.cz/spanielsko/fuerteventura/playa-del-esquinzo/fuerteventura-princess",
+      "rooms": 6
+    },
+    {
+      "name": "H10 Tenerife Playa",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/puerto-de-la-cruz/h10-tenerife-playa",
+      "rooms": 1
+    },
+    {
+      "name": "SENSEANA Sea Side Resort & Aquadventure",
+      "url": "https://www.eximtours.cz/recko/kreta/analipsi/senseana-sea-side-resort-a-aquadventure",
+      "rooms": 14
+    },
+    {
+      "name": "Mitsis Selection Azure",
+      "url": "https://www.eximtours.cz/recko/chalkidiki-olympska-riviera/kallithea/mitsis-alexander-the-great",
+      "rooms": 10
+    },
+    {
+      "name": "Pontiana Thalasso",
+      "url": "https://www.eximtours.cz/spanelsko/costa-del-azahar/oropesa-del-mar/pontiana-thalasso",
+      "rooms": 3
+    },
+    {
+      "name": "MarSenses Ferrera Blanca Hotel",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/cala-d-or/marsenses-ferrera-blanca-hotel",
+      "rooms": 1
+    },
+    {
+      "name": "Hotel Riu Costa del Sol",
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/torremolinos/riu-costa-del-sol",
+      "rooms": 1
+    },
+    {
+      "name": "Nicolaus Club Li Cucutti",
+      "url": "https://www.eximtours.cz/italie/sardinie/budoni/nicolaus-club-li-cucutti",
+      "rooms": 3
+    },
+    {
+      "name": "Geraniotis Hotel & Resort",
+      "url": "https://www.eximtours.cz/recko/kreta/platanias/geraniotis-hotel-a-resort",
+      "rooms": 6
+    }
+  ]
+}

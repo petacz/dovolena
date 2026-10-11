@@ -1,0 +1,515 @@
+{
+  "context": {
+    "adults": 2,
+    "children": [
+      9,
+      7
+    ],
+    "from": "2027-07-24",
+    "to": "2027-08-22",
+    "nights": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "budget": 200000.0,
+    "airport_ids": [
+      4312
+    ],
+    "transport": 1,
+    "meal_filter": "5",
+    "currency": "CZK"
+  },
+  "records": [
+    {
+      "provider": "8192|HER70089|EXIM TOURS ATCOM",
+      "room_code": "MA01",
+      "room_name": "Mezonet",
+      "date_from": "2027-08-07",
+      "date_to": "2027-08-17",
+      "nights": 10,
+      "total": 175960.0,
+      "currency": "CZK",
+      "meal": "All Inclusive",
+      "meal_code": "AI",
+      "airport": "Praha",
+      "airport_id": 4312,
+      "transport": 1,
+      "over_budget": false,
+      "source_kind": "offer",
+      "fetched": "2026-10-08T14:35:07+00:00",
+      "source_url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/hotel-high-beach?DS=8192&GIATA=13961&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=89513&PF=0&PT=200000&MT=5&MMT=5&DI=AI&RCS=MA01&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-17&DD=2027-08-07&ERM=0&AC1=2&KC1=2&KA1=9%7C7&IC1=0&TO=4312%7C4312&TT=1&PID=HER70089&DPR=EXIM+TOURS+ATCOM&ILM=0&IFM=0&PC=12203346%2F2%2F2775%2F10&IFC=201214475%2F621521&OFC=201377892%2F622462",
+      "outbound": "201377892/622462",
+      "inbound": "201214475/621521",
+      "online": true,
+      "raw": {
+        "price": {
+          "price": 175960.0,
+          "pricePerPerson": 56410.0,
+          "deposit": 3960.0,
+          "discount": 41520.0,
+          "currencySettings": {
+            "minimumFractionDigits": 0,
+            "maximumFractionDigits": 0,
+            "currency": "CZK",
+            "currencyDisplay": "symbol",
+            "useGrouping": true
+          },
+          "personPrices": [
+            {
+              "id": 1,
+              "price": 56410.0,
+              "discount": 16780.0
+            },
+            {
+              "id": 2,
+              "price": 56410.0,
+              "discount": 16780.0
+            },
+            {
+              "id": 3,
+              "price": 31570.0,
+              "discount": 3980.0
+            },
+            {
+              "id": 4,
+              "price": 31570.0,
+              "discount": 3980.0
+            }
+          ]
+        },
+        "room": {
+          "roomName": "Mezonet",
+          "groupId": 1,
+          "travellers": [
+            {
+              "id": 1,
+              "type": 0,
+              "age": 30
+            },
+            {
+              "id": 2,
+              "type": 0,
+              "age": 30
+            },
+            {
+              "id": 3,
+              "type": 1,
+              "age": 9
+            },
+            {
+              "id": 4,
+              "type": 1,
+              "age": 7
+            }
+          ],
+          "roomCode": "MA01"
+        },
+        "context": {
+          "hotelDataKey": {
+            "hotelId": 89513,
+            "giata": 13961,
+            "dataSource": 8192,
+            "bedBank": "EXIM TOURS ATCOM",
+            "bedBankID": "HER70089"
+          },
+          "dateFrom": "2027-08-07T00:00:00",
+          "dateTo": "2027-08-17T00:00:00",
+          "rooms": [
+            {
+              "roomName": "Mezonet",
+              "groupId": 1,
+              "travellers": [
+                {
+                  "id": 1,
+                  "type": 0,
+                  "age": 30
+                },
+                {
+                  "id": 2,
+                  "type": 0,
+                  "age": 30
+                },
+                {
+                  "id": 3,
+                  "type": 1,
+                  "age": 9
+                },
+                {
+                  "id": 4,
+                  "type": 1,
+                  "age": 7
+                }
+              ],
+              "roomCode": "MA01"
+            }
+          ],
+          "meal": "All Inclusive",
+          "priceInclude": {
+            "title": "V ceně je zahrnuto",
+            "termsAndConditions": {
+              "title": "Podmínky pro cestující",
+              "url": "https://dertour.cz/getmedia/43b844d6-234d-4cbb-971c-f2ca4d40e8d3/CZ_CZ_ATCOM_VOP.pdf"
+            },
+            "travelAgencyText": "Pořádající CK: DERTOUR CZ a.s. (majitel obchodní značky EXIM tours)",
+            "texts": [
+              "Ubytování v hotelu na 10 nocí",
+              "All Inclusive",
+              "Letecká doprava s transferem"
+            ]
+          },
+          "flightNote": {
+            "text": "",
+            "transferNote": "",
+            "luggageNotes": [
+              {
+                "luggageInfo": "Zavazadla v ceně / os.: 1x odbavené (23 kg) a 1x příruční (55x40x23 cm)",
+                "showMoreLinkURL": "",
+                "showMoreLinkText": "Zobrazit více"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "provider": "8192|HER70089|EXIM TOURS ATCOM",
+      "room_code": "MA01",
+      "room_name": "Mezonet",
+      "date_from": "2027-08-07",
+      "date_to": "2027-08-17",
+      "nights": 10,
+      "total": 175960.0,
+      "currency": "CZK",
+      "meal": "All Inclusive",
+      "meal_code": "AI",
+      "airport": "Praha",
+      "airport_id": 4312,
+      "transport": 1,
+      "over_budget": false,
+      "source_kind": "room_option",
+      "fetched": "2026-10-08T14:35:07+00:00",
+      "source_url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/hotel-high-beach?DS=8192&GIATA=13961&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=89513&PF=0&PT=200000&MT=5&MMT=5&DI=AI&RCS=MA01&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-17&DD=2027-08-07&ERM=0&AC1=2&KC1=2&KA1=9%7C7&IC1=0&TO=4312%7C4312&TT=1&PID=HER70089&DPR=EXIM+TOURS+ATCOM&ILM=0&IFM=0&PC=12203346%2F2%2F2775%2F10&IFC=201214475%2F621521&OFC=201377892%2F622462",
+      "outbound": "201377892/622462",
+      "inbound": "201214475/621521",
+      "online": true,
+      "raw": {
+        "price": {
+          "price": 175960.0,
+          "pricePerPerson": 46270.0,
+          "deposit": 3960.0,
+          "discount": 23880.0,
+          "currencySettings": {
+            "minimumFractionDigits": 0,
+            "maximumFractionDigits": 0,
+            "currency": "CZK",
+            "currencyDisplay": "symbol",
+            "useGrouping": true
+          },
+          "personPrices": [
+            {
+              "id": 1,
+              "price": 46270.0,
+              "discount": 7960.0
+            },
+            {
+              "id": 2,
+              "price": 46270.0,
+              "discount": 7960.0
+            },
+            {
+              "id": 3,
+              "price": 22580.0,
+              "discount": 3980.0
+            },
+            {
+              "id": 4,
+              "price": 22580.0,
+              "discount": 3980.0
+            }
+          ]
+        },
+        "room": {
+          "groupId": 1,
+          "roomGroupTypeId": 1,
+          "roomCode": "MA01",
+          "roomName": "Mezonet",
+          "availableCount": 2,
+          "price": {
+            "price": 175960.0,
+            "pricePerPerson": 46270.0,
+            "deposit": 3960.0,
+            "discount": 23880.0,
+            "currencySettings": {
+              "minimumFractionDigits": 0,
+              "maximumFractionDigits": 0,
+              "currency": "CZK",
+              "currencyDisplay": "symbol",
+              "useGrouping": true
+            },
+            "personPrices": [
+              {
+                "id": 1,
+                "price": 46270.0,
+                "discount": 7960.0
+              },
+              {
+                "id": 2,
+                "price": 46270.0,
+                "discount": 7960.0
+              },
+              {
+                "id": 3,
+                "price": 22580.0,
+                "discount": 3980.0
+              },
+              {
+                "id": 4,
+                "price": 22580.0,
+                "discount": 3980.0
+              }
+            ]
+          }
+        },
+        "context": {
+          "hotelDataKey": {
+            "hotelId": 89513,
+            "giata": 13961,
+            "dataSource": 8192,
+            "bedBank": "EXIM TOURS ATCOM",
+            "bedBankID": "HER70089"
+          },
+          "dateFrom": "2027-08-07T00:00:00",
+          "dateTo": "2027-08-17T00:00:00",
+          "rooms": [
+            {
+              "roomName": "Mezonet",
+              "groupId": 1,
+              "travellers": [
+                {
+                  "id": 1,
+                  "type": 0,
+                  "age": 30
+                },
+                {
+                  "id": 2,
+                  "type": 0,
+                  "age": 30
+                },
+                {
+                  "id": 3,
+                  "type": 1,
+                  "age": 9
+                },
+                {
+                  "id": 4,
+                  "type": 1,
+                  "age": 7
+                }
+              ],
+              "roomCode": "MA01"
+            }
+          ],
+          "meal": "All Inclusive",
+          "priceInclude": {
+            "title": "V ceně je zahrnuto",
+            "termsAndConditions": {
+              "title": "Podmínky pro cestující",
+              "url": "https://dertour.cz/getmedia/43b844d6-234d-4cbb-971c-f2ca4d40e8d3/CZ_CZ_ATCOM_VOP.pdf"
+            },
+            "travelAgencyText": "Pořádající CK: DERTOUR CZ a.s. (majitel obchodní značky EXIM tours)",
+            "texts": [
+              "Ubytování v hotelu na 10 nocí",
+              "All Inclusive",
+              "Letecká doprava s transferem"
+            ]
+          },
+          "flightNote": {
+            "text": "",
+            "transferNote": "",
+            "luggageNotes": [
+              {
+                "luggageInfo": "Zavazadla v ceně / os.: 1x odbavené (23 kg) a 1x příruční (55x40x23 cm)",
+                "showMoreLinkURL": "",
+                "showMoreLinkText": "Zobrazit více"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "provider": "8192|HER70089|EXIM TOURS ATCOM",
+      "room_code": "FR02",
+      "room_name": "Rodinný pokoj, 2 ložnice, Deluxe, Výhled bazén",
+      "date_from": "2027-08-07",
+      "date_to": "2027-08-17",
+      "nights": 10,
+      "total": 184640.0,
+      "currency": "CZK",
+      "meal": "All Inclusive",
+      "meal_code": "AI",
+      "airport": "Praha",
+      "airport_id": 4312,
+      "transport": 1,
+      "over_budget": false,
+      "source_kind": "room_option",
+      "fetched": "2026-10-08T14:35:07+00:00",
+      "source_url": "https://www.eximtours.cz/recko/kreta/stalis-malia-a-stalida/hotel-high-beach?DS=8192&GIATA=13961&D=63215%7C63287%7C63296%7C63410%7C63426%7C63542%7C63582%7C63581%7C63580%7C63220%7C63281%7C63283%7C63311%7C63314%7C63316%7C63319%7C63324%7C63333%7C63336%7C63364%7C63472%7C63390%7C63402%7C63408%7C63409%7C63442%7C63471%7C63213%7C211764%7C63241%7C63242%7C213028%7C63243%7C63244%7C63245%7C74459%7C74460%7C63284%7C74464%7C63350%7C63354%7C74465%7C63212%7C63539%7C63229%7C63255%7C64428%7C64427%7C63271%7C63298%7C63330%7C63329%7C63339%7C63356%7C63436%7C63376%7C63391%7C63406%7C63425%7C63429%7C63444%7C63537%7C63453%7C63454%7C63456%7C63457%7C63459%7C63219%7C63341%7C63362%7C63428%7C63226%7C63267%7C74463%7C63349%7C63455&HID=89513&PF=0&PT=200000&MT=5&MMT=5&DI=AI&RCS=FR02&NN=10&MNN=10%7C11%7C12%7C13%7C14%7C15&NNM=10%7C11%7C12%7C13%7C14%7C15&DF=2027-07-24%7C2027-08-22&RD=2027-08-17&DD=2027-08-07&ERM=0&AC1=2&KC1=2&KA1=9%7C7&IC1=0&TO=4312%7C4312&TT=1&PID=HER70089&DPR=EXIM+TOURS+ATCOM&ILM=0&IFM=0&PC=12203346%2F2%2F2775%2F10&IFC=201214475%2F621521&OFC=201377892%2F622462",
+      "outbound": "201377892/622462",
+      "inbound": "201214475/621521",
+      "online": true,
+      "raw": {
+        "price": {
+          "price": 184640.0,
+          "pricePerPerson": 49160.0,
+          "deposit": 3960.0,
+          "discount": 25400.0,
+          "currencySettings": {
+            "minimumFractionDigits": 0,
+            "maximumFractionDigits": 0,
+            "currency": "CZK",
+            "currencyDisplay": "symbol",
+            "useGrouping": true
+          },
+          "personPrices": [
+            {
+              "id": 1,
+              "price": 49160.0,
+              "discount": 8470.0
+            },
+            {
+              "id": 2,
+              "price": 49160.0,
+              "discount": 8470.0
+            },
+            {
+              "id": 3,
+              "price": 24030.0,
+              "discount": 4230.0
+            },
+            {
+              "id": 4,
+              "price": 24030.0,
+              "discount": 4230.0
+            }
+          ]
+        },
+        "room": {
+          "groupId": 1,
+          "roomGroupTypeId": 1,
+          "roomCode": "FR02",
+          "roomName": "Rodinný pokoj, 2 ložnice, Deluxe, Výhled bazén",
+          "availableCount": 6,
+          "price": {
+            "price": 184640.0,
+            "pricePerPerson": 49160.0,
+            "deposit": 3960.0,
+            "discount": 25400.0,
+            "currencySettings": {
+              "minimumFractionDigits": 0,
+              "maximumFractionDigits": 0,
+              "currency": "CZK",
+              "currencyDisplay": "symbol",
+              "useGrouping": true
+            },
+            "personPrices": [
+              {
+                "id": 1,
+                "price": 49160.0,
+                "discount": 8470.0
+              },
+              {
+                "id": 2,
+                "price": 49160.0,
+                "discount": 8470.0
+              },
+              {
+                "id": 3,
+                "price": 24030.0,
+                "discount": 4230.0
+              },
+              {
+                "id": 4,
+                "price": 24030.0,
+                "discount": 4230.0
+              }
+            ]
+          }
+        },
+        "context": {
+          "hotelDataKey": {
+            "hotelId": 89513,
+            "giata": 13961,
+            "dataSource": 8192,
+            "bedBank": "EXIM TOURS ATCOM",
+            "bedBankID": "HER70089"
+          },
+          "dateFrom": "2027-08-07T00:00:00",
+          "dateTo": "2027-08-17T00:00:00",
+          "rooms": [
+            {
+              "roomName": "Mezonet",
+              "groupId": 1,
+              "travellers": [
+                {
+                  "id": 1,
+                  "type": 0,
+                  "age": 30
+                },
+                {
+                  "id": 2,
+                  "type": 0,
+                  "age": 30
+                },
+                {
+                  "id": 3,
+                  "type": 1,
+                  "age": 9
+                },
+                {
+                  "id": 4,
+                  "type": 1,
+                  "age": 7
+                }
+              ],
+              "roomCode": "MA01"
+            }
+          ],
+          "meal": "All Inclusive",
+          "priceInclude": {
+            "title": "V ceně je zahrnuto",
+            "termsAndConditions": {
+              "title": "Podmínky pro cestující",
+              "url": "https://dertour.cz/getmedia/43b844d6-234d-4cbb-971c-f2ca4d40e8d3/CZ_CZ_ATCOM_VOP.pdf"
+            },
+            "travelAgencyText": "Pořádající CK: DERTOUR CZ a.s. (majitel obchodní značky EXIM tours)",
+            "texts": [
+              "Ubytování v hotelu na 10 nocí",
+              "All Inclusive",
+              "Letecká doprava s transferem"
+            ]
+          },
+          "flightNote": {
+            "text": "",
+            "transferNote": "",
+            "luggageNotes": [
+              {
+                "luggageInfo": "Zavazadla v ceně / os.: 1x odbavené (23 kg) a 1x příruční (55x40x23 cm)",
+                "showMoreLinkURL": "",
+                "showMoreLinkText": "Zobrazit více"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "codes": [
+    "MA01",
+    "FR02"
+  ]
+}

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="314.050" timestamp="2026-10-07T21:01:10.962804+00:00" hostname="e2b.local"><testcase classname="tests.test_live_exim" name="test_live_full_catalog_import" time="313.610" /></testsuite></testsuites>

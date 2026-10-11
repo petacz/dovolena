@@ -1,0 +1,30 @@
+test_area_lower_bound (test_app.Tests.test_area_lower_bound) ... ok
+test_conflict_is_unknown (test_app.Tests.test_conflict_is_unknown) ... ok
+test_csrf (test_app.Tests.test_csrf) ... ok
+test_csv_and_sqlite_export (test_app.Tests.test_csv_and_sqlite_export) ... ok
+test_custom_field_and_filter (test_app.Tests.test_custom_field_and_filter) ... ok
+test_failed_parser_preserves_data (test_app.Tests.test_failed_parser_preserves_data) ... ok
+test_initial_screen_without_doors (test_app.Tests.test_initial_screen_without_doors) ... ok
+test_manual_survives_refresh (test_app.Tests.test_manual_survives_refresh) ... ok
+test_no_bunk_negation (test_app.Tests.test_no_bunk_negation) ... ok
+test_no_inferred_bunk_absence (test_app.Tests.test_no_inferred_bunk_absence) ... ok
+test_room_atomicity (test_app.Tests.test_room_atomicity) ... ok
+test_sandy_excludes_pebbles_at_entry (test_app.Tests.test_sandy_excludes_pebbles_at_entry) ... ok
+test_scope_validation (test_app.Tests.test_scope_validation) ... ok
+test_search_accentless (test_app.Tests.test_search_accentless) ... ok
+test_search_api_403_no_bypass (test_app.Tests.test_search_api_403_no_bypass) ... ok
+test_search_api_empty_and_incomplete (test_app.Tests.test_search_api_empty_and_incomplete) ... ok
+test_search_api_external_url_rejected (test_app.Tests.test_search_api_external_url_rejected) ... ok
+test_search_api_invalid_schema_fallback (test_app.Tests.test_search_api_invalid_schema_fallback) ... ok
+test_search_api_no_browser (test_app.Tests.test_search_api_no_browser) ... ok
+test_search_api_url (test_app.Tests.test_search_api_url) ... ok
+test_seed_and_rooms (test_app.Tests.test_seed_and_rooms) ... ok
+test_strict_family_zero (test_app.Tests.test_strict_family_zero) ... ok
+test_twin_beds_for_parents_not_children (test_app.Tests.test_twin_beds_for_parents_not_children) ... ok
+test_unknown_does_not_admit_known_false (test_app.Tests.test_unknown_does_not_admit_known_false) ... ok
+test_url_validation (test_app.Tests.test_url_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.100s
+
+OK

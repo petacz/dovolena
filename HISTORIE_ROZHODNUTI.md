@@ -1,0 +1,53 @@
+# Historie produktových rozhodnutí
+
+Všechna níže uvedená rozhodnutí vycházejí z této zakázky; aktuální stav je sjednocen v `POZADAVKY.md`. Toto není doslovný přepis chatu. Starší rozhodnutí se nesmí automaticky vracet jako výchozí pravidla.
+
+## Původní požadavek
+
+Webová aplikace získávající co nejvíce detailů šesti hotelů z odkazu EXIM; SQLite; hledání a filtry; možnost rozšířit na více hotelů a další vlastnosti. Děti mají spát odděleně, dvě samostatná lůžka bez palandy. Plocha ubytování, písečná pláž, případně pozvolný vstup.
+
+## Upřesnění zdrojů a provozu
+
+Uživatel povolil i další cestovní portály, nejen EXIM a oficiální weby. Preferuje Docker a pokud možno Raspberry Pi 5; běžné PC je přijatelné. Přípustné jsou dvě ložnice, ložnice + obývací pokoj i propojené pokoje; ne jeden velký pokoj se čtyřmi lůžky.
+
+## v1: Konzervativní první implementace
+
+Aplikace požadovala výslovné potvrzení dveří. Výchozí přísná kombinace proto měla 0 potvrzených shod. Tento požadavek již **není aktuálním výchozím pravidlem**. Samostatný přísnější filtr na dveře zůstal dostupný.
+
+## v2: Zobrazit všechny varianty
+
+Uživatel požádal o uvedení všech pokojových variant s ikonou vhodnosti. Výchozí režim byl změněn na zobrazování všech variant s hodnocením místo skrývání. Historický výsledek při povinných dveřích: 0 vyhovujících, 19 k ověření, 24 nevyhovujících. Tato čísla nejsou aktuální rodinná předvolba.
+
+## v3: Prvotní filtrace, nikoli definitivní ověření dveří
+
+Uživatel výslovně upřesnil: **dvě ložnice nebo místnosti stačí; nemusí být napsáno, že jsou dveře; stejně provede ruční ověření**. Povinné dveře byly odstraněny z výchozí i tlačítkové předvolby Naše rodina. Samotné zdrojové pole o dveřích se neměnilo.
+
+Nový referenční výsledek nad kompletní databází: 3 vyhovující varianty, 16 k ověření, 24 nevyhovujících. Ostatní podmínky dětských postelí, palandy a pláže se nezměnily.
+
+## Dokumentační vydání v4
+
+Uživatel požaduje uchování zadání tak, aby podle něj bylo možné vytvořit novou aplikaci bez původního chatu. Doplněny soubory `POZADAVKY.md`, `GENEROVANI_APLIKACE.md` a `AKCEPTACNI_SCENARE.md`. Provozní README bylo sjednoceno s aktuálním pravidlem bez povinných dveří. Dokumentační vydání nemění aplikační logiku ani hotelová data.
+
+## Jak zapisovat další změny
+
+1. Uveď datum, důvod a zda jde o výslovný požadavek uživatele, technickou volbu nebo omezení.
+2. Aktualizuj autoritativní `POZADAVKY.md` a podle potřeby předávací zadání.
+3. Přidej nebo změň akceptační scénář a test.
+4. Teprve potom uprav implementaci; zaznamenej skutečně provedené ověření.
+5. Předchozí pravidlo ponech zde označené jako historické, ne jako současný návod.
+
+## v5: Výhoda pro děti a lehčí získávání seznamu
+
+Uživatel požádal vyzdvihnout pozvolný vstup jako plus pro děti a navrhl REST/XHR namísto plného prohlížeče. Doplněn výrazný bonus v kartách i detailech, bez přidání nové povinné podmínky. Ověřen a zapojen JSON endpoint EXIM pro vyhledávací výsledky. HTTP HTML zůstává pro detaily a jako první záloha seznamu; Chromium je až poslední záloha. Nezměnila se pravidla pokojů ani se nepřidal univerzální průzkumník hotelových webů.
+
+## v6: Živé testy, Chromium a skutečné stránkování
+
+Uživatel požádal o oddělené live EXIM testy, Chromium scénáře a kontrolu nového hledání přibližně 190 hotelů. Ověřený offset `pstg=20` vedl k náhradě jednostránkového fallbacku za fail-closed úplné stránkování. Rozšířeny dodavatelské popisy, zachována query nabídky, přidána transparentní neúplná metadata a ochrana starších pokojů. Automatické testy pracují mimo uživatelskou DB. Počet detailních URL se nesmí vydávat za počet fyzicky unikátních hotelů. Historický popis v5 výše už neplatí pro aktuální importní cestu.
+
+## 8. 10. 2026: Obecný katalog není konkrétní nabídka
+
+Uživatel opravil propojení pokojového katalogu s nabídkou a upřesnil, že chce co nejvíce informací, odděleně podle jejich původu; omezovat lze až následně filtry. Zapsáno do §11 zadání a scénářů G. Jde o nové požadované rozšíření, ne o již implementovanou vlastnost v6. Aktualizována dokumentace včetně omezení dosavadního reportu; kód a databáze zůstaly beze změny.
+
+## V7: Nové hledání 9/7 a ceny podle typů
+
+Uživatel potvrdil zachování období a 10–15 nocí a opravil věk dětí na 9/7. Přidán samostatný cenový konektor, oddělené cenové profily a zdrojové nabídky. Během ověření se ukázalo, že cenové API může nabídnout návrat mimo interval; proto se upravuje horní mez odletu a kontrolují skutečné vrácené termíny. Ceny se nepřiřazují podle podobnosti jmen a neomezují obecný katalog. Přesné výsledky nového běhu uvádí CENY_REPORT.md.

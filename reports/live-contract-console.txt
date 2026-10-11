@@ -1,0 +1,2 @@
+Final run: python -m pytest -m "live and not bulk" -q --junitxml=reports/live-contract-junit.xml
+4 passed, 62 deselected in 26.14s

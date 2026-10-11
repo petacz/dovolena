@@ -1,0 +1,18 @@
+{
+  "offers_audited": 544,
+  "children": [
+    9,
+    7
+  ],
+  "range_checked": [
+    "2027-07-24",
+    "2027-08-22"
+  ],
+  "integrity": "ok",
+  "all_checks_passed": true,
+  "room_codes": 492,
+  "unmapped_room_codes": 308,
+  "over_budget_offers": 61,
+  "hotels": 192,
+  "catalog_rooms": 937
+}

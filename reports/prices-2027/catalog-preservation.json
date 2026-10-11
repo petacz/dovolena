@@ -1,0 +1,18 @@
+{
+  "hotels": {
+    "old_count": 190,
+    "new_count": 192,
+    "existing_records_identical": true
+  },
+  "rooms": {
+    "old_count": 929,
+    "new_count": 937,
+    "existing_records_identical": true
+  },
+  "facts": {
+    "old_count": 646,
+    "new_count": 652,
+    "existing_records_identical": true
+  },
+  "integrity": "ok"
+}

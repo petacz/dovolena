@@ -1,0 +1,243 @@
+{
+  "search_id": 1,
+  "started": "2026-10-08T14:12:56+00:00",
+  "finished": "2026-10-08T14:29:34+00:00",
+  "context": {
+    "adults": 2,
+    "children": [
+      9,
+      7
+    ],
+    "from": "2027-07-24",
+    "to": "2027-08-22",
+    "nights": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "budget": 200000.0,
+    "airport_ids": [
+      4312
+    ],
+    "transport": 1,
+    "meal_filter": "5",
+    "currency": "CZK"
+  },
+  "discovered": 190,
+  "processed": 179,
+  "http_calls_details_and_prices": 642,
+  "errors": [
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/cala-d-or/iberostar-cala-barca",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/cavo-maris-beach-hotel",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/valencie/villa-luz-family-gourmet-a-all-exclusive-hotel",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/larnaca/sandy-beach",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-blanca/benidorm/magic-aqua-rock-gardens",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/costa-calma/h10-tindaya",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/sa-coma/hipotels-mediterraneo-club",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/mallorca/palma-nova/sol-palmanova",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/caleta-de-fuste/eurostars-las-salinas",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/hersonissos/annabelle-beach-resort",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/torremolinos/riu-costa-del-sol",
+      "error": "Nerozpoznané schéma cenové odpovědi."
+    }
+  ],
+  "warnings": [
+    {
+      "url": "https://www.eximtours.cz/spanelsko/costa-de-la-luz/estival-islantilla",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/malta/ostrov-malta/qawra/hotel-san-antonio",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/kypr/jizni-kypr/protaras/louis-althea-beach-hotel",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/fuengirola/torreblanca",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/thassos/skala-prinos/alea-a-suites",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/playa-de-las-americas/la-siesta",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/costa-dorada/salou/acqua-salou",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/fuerteventura/costa-calma/sotavento-beach",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/tenerife/costa-adeje/lagos-de-fanabe",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/lanzarote/puerto-del-carmen/hotel-sol-lanzarote",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/italie/sardinie/costa-rei/th-costa-rei",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/heraklion/hotel-marilena",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/benalmadena-costa/hotel-best-benalmadena",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/spanelsko/costa-de-la-luz/playamarina-spa",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/spanelsko/andalusie/torremolinos/puente-real",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/italie/sardinie/costa-rei/alma-resort",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/spanelsko/andalusie/torremolinos/hotel-parasol-garden",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/zakynthos/laganas/garden-palace",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/thassos/skala-rachoni/aegean-collection",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/korfu/sidari/amour-garden",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/italie/kalabrie/marinella-di-cutrobaia-degli-dei",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/lesbos/skala-eressou/aeolian-village-beach-resort",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/hotely/recko/kreta/sitia/sitia-beach-resort-and-spa",
+      "messages": [
+        "Odpověď změnila dodavatele hotelu."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/spanelsko/costa-del-azahar/oropesa-del-mar/magic-fantasy",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/spanelsko/costa-del-azahar/oropesa-del-mar/pontiana-thalasso",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    },
+    {
+      "url": "https://www.eximtours.cz/recko/kreta/platanias/geraniotis-hotel-a-resort",
+      "messages": [
+        "Nabídka je mimo zadaný interval nebo počet nocí."
+      ]
+    }
+  ],
+  "offers": 507,
+  "hotels_with_prices": 173,
+  "mapped_rooms": 159,
+  "unmapped_offers": 324,
+  "priced_room_codes": 456,
+  "integrity": "ok",
+  "coverage": "Nejnižší ze získaných nabídek v intervalu, ne garantované minimum všech kombinací. Kódy objevené v roomOptions; ne všechny obecné typy musejí mít cenu. Platí jen daný dodavatel a stravování z výsledku hledání."
+}

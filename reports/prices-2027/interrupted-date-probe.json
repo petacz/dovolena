@@ -1,0 +1,215 @@
+{
+  "reason": "Corrected API dateTo: endpoint interprets it as latest departure. Returned stays are also checked against final return deadline. Preliminary run interrupted, prices not published.",
+  "hotels": [
+    {
+      "search_id": 1,
+      "hotel_id": 4,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 5,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 2,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 6,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 1,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 7,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 8,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 3,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 9,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 10,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 11,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 12,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 13,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 14,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 15,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 16,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 17,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 18,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 19,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 20,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 21,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 22,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 23,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 24,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 25,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 26,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 27,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 28,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 29,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 30,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 31,
+      "status": "warning",
+      "notes": "Nabídka je mimo zadaný interval nebo počet nocí."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 32,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 33,
+      "status": "priced",
+      "notes": ""
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 34,
+      "status": "warning",
+      "notes": "Odpověď změnila dodavatele hotelu."
+    },
+    {
+      "search_id": 1,
+      "hotel_id": 36,
+      "status": "priced",
+      "notes": ""
+    }
+  ]
+}
