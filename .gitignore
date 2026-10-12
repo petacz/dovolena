@@ -1,0 +1,14 @@
+# Běh aplikace a obnovy katalogu nechává v adresářích vedlejší soubory.
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# SQLite WAL/SHM vedle aktivní databáze (do zálohy se nedostávají, do Gitu taky ne).
+data/*-wal
+data/*-shm
+reports/*/*-wal
+reports/*/*-shm
+
+# Bezpečnostní kopie, které vytvoří tools/refresh_catalog.py před každým obnovením.
+reports/**/backup-before-refresh-*.sqlite
