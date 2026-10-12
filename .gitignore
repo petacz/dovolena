@@ -13,5 +13,7 @@ reports/*/*-shm
 # Bezpečnostní kopie, které vytvoří tools/refresh_catalog.py před každým obnovením.
 reports/**/backup-before-refresh-*.sqlite
 
-# test: každý běh pytestu uloží replay do reports/<časové razítko>/ — nejsou to dodané výstupy
+# Test: každý běh pytestu uloží replay do reports/<časové razítko>/. Nové razítko není
+# dodaný výstup, proto se ignoruje — dříve uložené adresy reports/2026…/ jsou v gitu a
+# jejich změny se pořád sledují. Nový soubor v nich přidejte explicitně: git add -f.
 reports/20*/
