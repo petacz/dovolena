@@ -17,6 +17,19 @@ def test_default_all_variants_and_optional_filters(page):
  assert page.locator('.assessment.unknown').count()>0
  assert page.locator('.gentle-bonus').count()>0
 
+def test_beach_verdict_once_per_hotel_not_per_variant(page):
+ # Pláž je údaj celého hotelu: musí se objevit jednou v kartě a ani jednou u varianty.
+ for key in ['separate','twin','no_bunk','sand']:page.locator(f'[data-key="{key}"]').check()
+ page.wait_for_function("()=>document.querySelectorAll('.card .assessment.hotel').length>0")
+ for card in page.locator('.card').all():
+  assert card.locator('.assessment.hotel').count()==1
+  variants=card.locator('.variant-row').all_inner_texts()
+  assert variants and all('Pouze písek' not in v for v in variants)
+ text=page.locator('.assessment.hotel').first.inner_text()
+ assert 'Pouze písek' in text or 'Nedoloženo' not in text
+ assert 'Hotel:' in page.locator('#assessmentSummary').inner_text()
+
+
 def test_search_empty_and_reset(page):
  page.locator('#search').fill('Ninos')
  expect(page.locator('.card')).to_have_count(1)

@@ -15,6 +15,10 @@ def test_all_190_saved_descriptions():
   assert parsed['name']==record['name'],record['url']
   assert [r['name'] for r in parsed['rooms']]==record['room_names'],record['url']
   assert parsed['warnings']==record['warnings'],record['url']
+  for room in parsed['rooms']:
+   # A proven bunk bed is only ever the one the supplier names in this variant's own text.
+   if not any(m in core.fold(room['name']+': '+room['description']) for m in ('paland','bunk bed')):
+    assert room['values'].get('no_bunk') is not False,record['url']+' / '+room['name']
 
 def test_full_saved_catalog_database_replay(isolated_db,monkeypatch,report_dir):
  manifest=json.loads((FOLDER/'manifest.json').read_text());records=manifest['records']

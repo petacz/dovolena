@@ -32,7 +32,7 @@ Archiv obsahuje všechny tyto dokumenty, kód, SQLite databázi, zdrojové URL, 
 
 Předvolba **Naše rodina** vyžaduje oddělené ložnice nebo místnosti, dvě samostatné dětské postele, bez palandy a písečnou pláž včetně vstupu podle zdroje. **Výslovné potvrzení dveří není nutné.** Dveře, pozvolnost vstupu, plocha a vzdálenost zůstávají volitelné filtry.
 
-Výchozí obrazovka ukazuje všechny varianty s ikonou a důvody: **✓ vyhovuje podle zdrojů / ✕ nevyhovuje / ? k ověření**. Ikona hodnotí aktuálně vybrané podmínky pokoje i hotelové pláže. Nepotvrzuje dostupnost zájezdu. Chybějící údaj se nezaměňuje za neshodu; známá neshoda má přednost před nejistotou.
+Výchozí obrazovka ukazuje všechny varianty s ikonou a důvody: **✓ vyhovuje podle zdrojů / ✕ nevyhovuje / ? k ověření**. Podmínky se posuzují ve své rovině: ikona u varianty hodnotí jen požadavky na pokoj, údaj o pláži a vzdálenosti se vyhodnocuje jednou za celý hotel (řádek „Hotel …“ nad seznamem variant), aby vyhovující pokoj nevypadal jako nevyhovující kvůli pláži. Obojí se ve výsledku stále slučuje bytovou kombinací – hotel vyhoví jen tehdy, když platí jeho hotelové podmínky a zároveň existuje varianta splňující podmínky pokojové. Nepotvrzuje dostupnost zájezdu. Chybějící údaj se nezaměňuje za neshodu; známá neshoda má přednost před nejistotou.
 
 Přepínač **Zobrazit i nevyhovující** je výchozí zapnutý. Po vypnutí skutečné filtrování ponechá hotely s alespoň jednou vhodnou variantou; uvnitř hotelu stále ukazuje všechny typy. Textové hledání a oblíbené fungují v obou režimech. CSV obsahuje podkladové hodnoty, nikoli grafické ikonky.
 
@@ -104,7 +104,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Na Windows aktivace prostředí: `.venv\Scripts\activate`. Produkční prohlížení i import používá pouze HTTP/JSON, Chromium není potřeba. Pro Chromium testy viz TESTOVANI.md.
+Na Windows aktivace prostředí: `.venv\Scripts\activate`. `requirements.txt` fixuje `soupsieve==2.10`, protože soupsieve 3.x odmítá selektory a znehodnotí parser EXIM i cenové API. Produkční prohlížení i import používá pouze HTTP/JSON, Chromium není potřeba. Pro Chromium testy viz TESTOVANI.md.
 
 Pro běžný Linux server použijte místo vývojového Flask serveru:
 
@@ -149,11 +149,45 @@ Tabulka shrnuje uložené zdroje, není zárukou stavu nebo doporučením k reze
 - Neúspěšná stránka nepřepíše poslední funkční záznam. Chyby se zobrazí v importní historii. Při přejmenování pokoje vzniká nový typ, starý se deaktivuje a jeho ruční poznámky zůstávají v databázi.
 - Aktualizace není plánovaná automaticky. Spouští se na požádání.
 
+### Celý katalog jedním příkazem (například všech ~190 hotelů)
+
+`tools/refresh_catalog.py` nejdřív zálohuje, pak stáhne všechny stránky výsledků hledání přes JSON API, každou nabídku uloží a na konci napíše, co se oproti předchozímu stavu změnilo.
+
+```bash
+# 1) Nácvik offline proti archivovaným popisům: žádná síť, žádná rizika
+python tools/refresh_catalog.py --archive tests/fixtures/catalog-190 --data-dir /tmp/nacvik
+
+# 2) Ostrý běh do KOPIE katalogu — vaše stávající data zůstanou nedotčená
+cp -r data /tmp/katalog-190
+python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir /tmp/katalog-190
+DATA_DIR=/tmp/katalog-190 python app.py
+
+# 3) Spokojeni? až potom aktualizujte svůj běžný katalog
+python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir data
+```
+
+**Změna parseru nevyžaduje stažení.** Texty popisů už v databázi jsou, proto `--reparse` přepočítá automatické fakty pokojů z uložených popisů bez jediné sítové žádosti:
+
+```bash
+python tools/refresh_catalog.py --reparse --data-dir data
+```
+
+Kolónka `ztracených faktů` v reportu není chyba: jsou to tvrzení, která nový parser už nedělá (například alternativní dispozice „jedna místnost nebo dvě“ se nyní hodnotí `?`, ne `✓`). Ruční ověření a ověřené doplňkové zdroje se nepřepočítávají ani nemažou.
+
+- Vyhledávací URL určuje rozsah. `data/search_prices_url.txt` je současné široké hledání (2 dospělí, děti 9/7, léto 2027, ~190 nabídek); `data/search_large_url.txt` se liší jen věkem 8/6 a nechává se pro reprodukci historických testů v6.
+- Před živým během skript ověří dostupnost API. Když zdroj neodpovídá, skončí s vysvětlením a do dat nesahne; `--force-live` přeskočí pouze tuto předkontrolu, ne kontrolu úplnosti.
+- `--limit N` stáhne jen prvních N detailů — rozumné první oťukání živého zdroje. Report pak jasně řekne, že jde o částečný běh.
+- Report `refresh-report.json` v cílovém adresáři obsahuje přidané a deaktivované typy, změněné fakty, integritu a počty rodinné předvolby ✓ / ? / ✕ nad aktuálními daty.
+- Opakovaný běh nad nezměněným zdrojem hlásí nulu ve všech koloncích změn; import proto ničím nepřepiše, co source stále tvrdí stejně.
+- Ruční ověření (`manual`) a ověřené doplňkové zdroje (`reviewed`) zůstávají, maže se pouze `auto`.
+
 **Automatický konektor je pouze pro EXIM.** Oficiální weby a jiní prodejci byli použiti při prvním výzkumu; jejich údaje jsou uložené odděleně. Aplikace neobsahuje univerzální crawler ani automatické AI dohledávání libovolných hotelů. Další zdroje lze zapisovat jako ruční ověření s URL a citací. `enrich.py` je pomocný jednorázový výzkumný skript, nikoli obecný importér; některé weby přímé HTTP požadavky blokují. Rozhodující je dodaná databáze včetně textů získaných při výzkumu.
 
 ## Význam údajů a omezení parseru
 
 - **Ano/ne/neuvedeno** nejsou zaměnitelné. Absence slova „palanda“ neznamená, že tam palanda není.
+- Dveře mezi pokoji se počítají jen tehdy, když v téže větě dělí místnosti, ložnici nebo pokoje; „dveře na balkon“ ne. Skloňování (dveřmi/dveří) a slovně zapsané číslice („dvě místnosti“) parser zvládá, explicitní „nejsou oddělené dveřmi“ vyhodnotí jako `ne`.
+- Palanda je `✕` jedině tehdy, když ji zdroj u daného typu přímo uvádí — tedy i tehdy, pokud jde jen o volitelnou přistýlku pro další osobu. Název „… s palandou“ se počítá jako uvedení. Obrátit ji na `✓` umí formulace „bez palandy“ / „no bunk beds“; jiné negace parser nepozná a opravuje je ruční ověření.
 - „Rodinný pokoj“ sám neprokazuje dvě místnosti. Oddělená ložnice neprokazuje dveře. Dvě postele pro rodiče neprokazují dvě dětská lůžka.
 - Písek znamená, že popis pláže uvádí písek a nezmiňuje kameny/oblázky, včetně vstupu. Není to ověření terénu ani záruka každého metru pláže.
 - U plochy 35–40 m² se filtr porovnává s dolní hranicí 35 m²; celý rozsah zůstává v citaci. Nejednoznačná jednotka `32m` zůstává bez číselného údaje.

@@ -25,6 +25,13 @@ U scénářů dispozice předpokládej splnění ostatních vybraných podmínek
 | A15 | Písečná pláž, pozvolnost neuvedena | Výchozí rodinný výběr neblokovat kvůli pozvolnosti; po zapnutí této podmínky k ověření. |
 | A16 | Plocha 35–40 m² | Minimum 35 splněno, minimum 38 nikoli; originální rozsah dostupný v citaci. |
 | A17 | Plocha neuvedena | Zobrazit neuvedeno, nikoli 0 m²; při aktivním plošném filtru zachovat nejistotu. |
+| A18 | Popis ani název typu neobsahuje „palanda“ / „bunk bed“ | Varianta nikdy nedostane ✕ kvůli palandě. ✕ je výhradně tam, kde zdroj palandu u tohoto typu přímo uvádí (i jako volitelnou přistýlku). |
+| A19 | „Dvě místnosti oddělené dveřmi“ (slovně, bez číslice) | Oddělené místnosti = ano a dveře = ano, s citací původní věty. |
+| A20 | „Dveře na balkon, terasa“ | Dveře mezi pokoji zůstanou neuvedeno; balkonové dveře se nesmí počítat. |
+| A21 | „…dvě ložnice, nejsou oddělené dveřmi“ | Oddělení lze posoudit z popisu, dveře = ne (doložený rozpor), tedy při zapnutém dveřním filtru ✕. |
+| A22 | Zapnutá podmínka „Pouze písek“, hotel má doložený štěrk, ale dispozice varianty vyhovuje | Neshodu pláže hlásí jeden řádek za hotel; varianta zůstává ✓ a údaj o pláži se u ní neopakuje. Hotel se do doložené shody nedostane (B03). |
+
+Scénáře A09–A11 a A18 kryjí automatické testy `test_bunk_*` a `test_no_*_bunk_*` nad 36 variantami archivovaných EXIM snapshotů a nad 929 variantami archivu 190 hotelů; na všech 965 variantách platí, že ✕ existuje jen u doložené zmínky.
 
 ## B. Kombinování a zobrazení
 
@@ -32,6 +39,7 @@ U scénářů dispozice předpokládej splnění ostatních vybraných podmínek
 |---|---|---|
 | B01 | Varianta A má oddělené místnosti, B má dvě dětské postele, žádná nemá obojí doložené | Hotel neprojde jako doložená shoda součtu těchto dvou variant. |
 | B02 | Jedna podmínka nevyhovuje a další údaj chybí | Celkový stav ✕, uvést neshodu i chybějící údaj. |
+| B02a | Požadavek pouze na pláž (žádný požadavek na pokoj) | Varianty se neoznačují jako k ověření — ukazují „— Bez požadavků na pokoj“ a posouzení nese řádek hotelu. |
 | B03 | Všechny vybrané podmínky jsou potvrzené | ✓; text upozorní, že to nepotvrzuje dostupnost. |
 | B04 | Žádná známá neshoda, jeden vybraný údaj chybí | ? K ověření. |
 | B05 | Nevybraná podmínka není splněná (např. dveře) | Nemění výsledek aktuálního hodnocení. |

@@ -1,0 +1,19 @@
+# Běh aplikace a obnovy katalogu nechává v adresářích vedlejší soubory.
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# SQLite WAL/SHM vedle aktivní databáze (do zálohy se nedostávají, do Gitu taky ne).
+data/*-wal
+data/*-shm
+reports/*/*-wal
+reports/*/*-shm
+
+# Bezpečnostní kopie, které vytvoří tools/refresh_catalog.py před každým obnovením.
+reports/**/backup-before-refresh-*.sqlite
+
+# Test: každý běh pytestu uloží replay do reports/<časové razítko>/. Nové razítko není
+# dodaný výstup, proto se ignoruje — dříve uložené adresy reports/2026…/ jsou v gitu a
+# jejich změny se pořád sledují. Nový soubor v nich přidejte explicitně: git add -f.
+reports/20*/

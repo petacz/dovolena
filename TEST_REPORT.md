@@ -98,3 +98,61 @@ Docker build a fyzický Raspberry Pi, dlouhodobá stabilita interního EXIM API,
 ## Upřesnění rozsahu výsledků po připomínce uživatele
 
 Výsledky výše nadále popisují naměřenou implementaci v6. Nedokazují úplnost obecného katalogu pokojů hotelu: šlo o stažení konkrétních detailních URL v daném kontextu. U Asterias nebyla doložena absence obecného hotelového popisu, pouze prázdný popis v testované nabídce. Nové požadavky §11 POZADAVKY.md a scénáře G nejsou těmito testy potvrzené. Aplikace nebyla v rámci tohoto dokumentačního upřesnění změněna ani znovu testována.
+
+## 11. 10. 2026: Ověření pravidla „palanda jen z přímého uvedení“
+
+Rozsah: pravidlo P-02 se neměnilo, ověřoval se jeho současný výklad a doplnily se pojistky. Python 3.11, `beautifulsoup4==4.14.3`, `soupsieve==2.10`, offline (`-m "not live and not chromium"`).
+
+| Kontrola | Naměřeno |
+|---|---:|
+| Off-line testová sada | **87 passed / 0 failed**, 24 deselected (live, bulk, chromium, prices) |
+| Testy palandy v `tests/test_parser_variants.py` | 29 collectionů, z toho 17 nových |
+| Archivy EXIM: varianty celkem | 36 (snapshots) + 929 (katalog 190) = **965** |
+| Varianty s `✕` pro `no_bunk` | **5** (z toho 5 × přímá zmínka o palandě) |
+| `✕` bez zmínky o palandě v názvu či popisu daného typu | **0** |
+| Varianty bez zmínky → `?` (žádný fakt) | 32 z 43 v dodané DB |
+| Dopad započtení názvu typu do `room_values` | **0 ze 1002** archivovaných variant změnilo výsledek |
+| Živý API test nad dodanou DB, filtr samotný `no_bunk` | přísný režim 4 hotely / 6 variant; se „Zahrnout neověřené“ 6 hotelů / 38 variant, vyřazeno právě 5 pokojů s uvedenou palandou |
+
+Oprava závislosti: s `soupsieve==3.0.1` selže i selektor `span`, tedy všechny `BeautifulSoup.select` volání. Import EXIM i cenové API by končily `SelectorSyntaxError`; requirements proto fixují `soupsieve==2.10`.
+
+**Neověřeno v tomto prostředí:** sestavení Docker image, live testy proti eximtours.cz (sem nedovoleno), Chromium E2E (chyběl binární prohlížeč), fyzické Raspberry Pi. Testovací běh dočasně vytvořil `reports/<timestamp>/`; výsledek replay je regenerovatelný `python -m pytest`.
+
+### 12. 10. 2026: Oprava čtení dveří a oddělení
+
+Nad 965 archivovanými varianty (6 snapshotů + archiv 190 hotelů), Python 3.11, `soupsieve==2.10`, offline:
+
+| Měřeno | Před | Po |
+|---|---:|---:|
+| `oddělené místnosti = ano` | 102 | **161** |
+| `zavíratelné dveře = ano` | 17 | **56** |
+| ztracených dříve detekovaných tvrzení | – | **0** |
+| změna v šesti dodaných snapshotech (36 variant) | – | **0** |
+| off-line testová sada | 90 passed | **93 passed** |
+
+Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catalog-190 --data-dir <kopie>`: 190/190, 0 chyb, integrita `ok`, rodinná předvolba ✓ 2 / ? 717 / ✕ 210; opakovaný běh hlásí 0 nových, 0 změněných a 0 ztracených faktů. Živý běh proti eximtours.cz v tomto prostředí nebyl možný.
+
+### 12. 10. 2026 večer: `--reparse` — přepočet bez stahování
+
+| Měřeno | Výsledek |
+|---|---:|
+| Archiv 965 variant: `separate = ano` | 102 → **158** |
+| Archiv 965 variant: `doors = ano` | 17 → **53** |
+| Mylná `ano` u alternativní dispozice vrácena na `?` | **3** |
+| `--reparse` nad `reports/prices-2027` (192 hotelů, 937 typů) | 40 nových faktů, 0 změněných, 0 chyb, 0,7 s, integrita `ok` |
+| Off-line testová sada | **94 passed** |
+
+Žádné síťové volání: režim pracuje výhradně s texty, které už jsou v databázi.
+
+### 12. 10. 2026 v noci: rozdělení hodnocení podle roviny (pokoj vs. hotel)
+
+| Kontrola | Výsledek |
+|---|---|
+| `tests/test_assessment_scopes.py` (logika UI přes node, 5 scénářů) | **5 passed** |
+| Celá off-line sada | **99 passed**, 24 deselected |
+| Výskyt údaje o pláži v hodnocení varianty (vzorek hotelů) | **0×**, dříve u každé varianty |
+| `--reparse` nad `reports/prices-2027` | 40 nových faktů, 0 změněných, integrita `ok` |
+
+`tests/test_chromium.py` má nově scénář `test_beach_verdict_once_per_hotel_not_per_variant`:
+na každé kartě právě jeden `.assessment.hotel` a žádný výskyt „Pouze písek“ v `.variant-row`.
+Neověřeno: Chromium tady spustit nelze (chybí `playwright`) — test poběží na vašem stroji.

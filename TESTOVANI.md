@@ -100,3 +100,8 @@ V dodávce je ponechán kompaktní výběr screenshotů a trace v `reports/final
 ## Cenové testy v7
 
 `test_prices.py` testuje kontext, ceny za celou rodinu, odmítnutí nesprávné nabídky, přesné přiřazení, ochranu katalogu a export. Chromium má navíc cenové scénáře. `python -m pytest -m "live and prices"` provede dvě skutečné cenové kontraktní kontroly. Samotné `-m "live and not bulk"` nyní zahrne také tyto cenové testy; pro původní sadu použijte `-m "live and not bulk and not prices"`. Výsledky v6 v TEST_REPORT.md jsou historické; aktuální cenové měření je v CENY_REPORT.md.
+
+## Nástroj `tools/refresh_catalog.py`
+
+`tests/test_refresh_tool.py` ověřuje skript bez sítě: spustí ho jako podproces nad archivem `tests/fixtures/catalog-190` do dočasného adresáře, ověří, že druhý běh nad týmiž popisy nezmění nic (nula v kolonkách změn), že se záloha vytvoří až při existující databázi a že report vždy souhlasí počty rodinné předvolby s počtem variant. Když skript upravíte, hned vidíte, jestli jste rozbili idempotenci nebo zálohování.
+

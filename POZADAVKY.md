@@ -23,6 +23,7 @@ Za vhodnou dispozici pro prvotní výběr považovat:
 
 **Dvě oddělené ložnice nebo místnosti stačí. Není nutné, aby zdroj výslovně uváděl dveře.** Nevyřazovat variantu ani ji nesnižovat na „k ověření“ pouze kvůli chybějící informaci o dveřích.
 
+Při čtení zdroje platí: „dvě místnosti oddělené dveřmi“, „2 pokoje oddělené dveřmi“, „ložnice a obývací část oddělená dveřmi“ i anglické „two rooms separated by a door“ jsou výslovné potvrzení obojího — oddělení i dveří. Slovně zapsaná číslice se rovná číslici, skloňování („dveřmi“, „dveří“) se rovná 1. pádu. Dveře na balkon či terasu nejsou dělicí dveře a nesmí vytvořit `ano`. Explicitní „nejsou oddělené dveřmi“ je doložené `ne`, nikoli nejistota.
 Výslovná zmínka o dveřích je užitečný doplňkový údaj. Lze nabídnout samostatný, ve výchozím stavu vypnutý přísnější filtr na dveře. Bez důkazu nepřepisovat samotný údaj o dveřích na „ano“ — mění se požadavek, nikoli zdrojová fakta.
 
 Jeden velký pokoj se čtyřmi lůžky nevyhovuje. Samotný název „rodinný pokoj“ či „suite“ nedokazuje oddělené místnosti. Dvě explicitně oddělené místnosti s posuvnou stěnou vyhovují prvotnímu dispozičnímu filtru. Dva nezávislé pokoje bez potvrzeného propojení nepovažovat automaticky za vyhovující společné ubytování.
@@ -31,7 +32,11 @@ Jeden velký pokoj se čtyřmi lůžky nevyhovuje. Samotný název „rodinný p
 
 Uživatel požaduje dvě samostatná dětská lůžka a žádnou palandu. Dvě postele uvedené pro rodiče nejsou důkazem dvou dětských postelí. Chybějící zmínka o palandě není důkazem její nepřítomnosti.
 
+Pravidlo pro prvotní hodnocení (upřesnění 11. 10. 2026): neshodu `✕` v poli „Bez palandy pro děti“ smí vytvořit jedině přímá zmínka o palandě v názvu nebo popisu téhož typu ubytování, a to bez ohledu na to, zda je palanda hlavní konfigurací lůžek nebo jen volitelnou přistýlkou pro další osobu. Není-li palanda uvedena, `✕` nikdy nevznikne — varianta zůstane `?`, případně `✓` z doložených samostatných dětských postelí. Uživatel počítá s tím, že zdroje absenci palandy formulací „palanda není“ nepíší; doklad „bez palandy“ proto nevzniká z mlčení. Obrátit zmínku na `✓` umí parser jen u formulací „bez paland“ / „no bunk beds“. Jiná negace (například „palanda není k dispozici“) zůstává mylně `✕` a smí ji opravit jedině ruční ověření s citací, nikoli domýšlení parseru.
+
 Dosavadní produktové pravidlo: dvě běžné samostatné postele vyhovují; společná rozkládací pohovka nevyhovuje a dvě samostatné pohovky se nepovažují za dvě běžné postele. Typ přistýlky evidovat v popisu. Případné budoucí zmírnění pravidla pro pohovky musí být výslovné, nikoli tichý odhad implementátora.
+
+Stejné pravidlo platí i pro dispozici: „jedna prostornější místnost nebo dvě místnosti oddělené posuvnými dveřmi“ je alternativa, nikoli tvrzení, že oddělení je — výsledek je `?`, ne `✓`.
 
 Pokud je popsané více možných konfigurací lůžek, neoznačit celou variantu bezpodmínečně jako vyhovující, když část konfigurací nevyhovuje. Zachovat podmínky a uvést důvod či potřebu ověření.
 
@@ -65,7 +70,7 @@ Ruční ověření musí vyžadovat vysvětlení nebo citaci. Uchovat historii a
 
 ### P-07: Import
 
-Importovat původních šest hotelů a umožnit další importy. Neúspěšné stažení či změna struktury webu nesmí smazat předchozí platná data. Deduplikovat hotelové URL, zobrazovat průběh a chyby. Respektovat podmínky webů, používat timeouty a omezenou frekvenci; neobcházet přihlášení, CAPTCHA ani blokace.
+Importovat původních šest hotelů a umožnit další importy. Neúspěšné stažení či změna struktury webu nesmí smazat předchozí platná data. Změna pravidla parseru se nesmí vydávat za nutnost znovu stahovat: uložený popis typu ubytování stačí přepočítat (režim `--reparse`), zdroje ani ruční ověření se tím nemění. Deduplikovat hotelové URL, zobrazovat průběh a chyby. Respektovat podmínky webů, používat timeouty a omezenou frekvenci; neobcházet přihlášení, CAPTCHA ani blokace.
 
 Počet skutečně importovaných hotelů a rozsah importu musí být zřejmé. Pokud konektor načte jen první/vykreslenou stránku výsledků, musí to výslovně říct. Nepředstírat podporu univerzálního prohledávání webu.
 
@@ -74,13 +79,13 @@ Počet skutečně importovaných hotelů a rozsah importu musí být zřejmé. P
 ### P-08: Ukázat všechny varianty s ikonami
 
 Výchozí obrazovka zobrazuje **všechny evidované varianty pokoje u každého nalezeného hotelu**, nikoli jen jednu doporučenou. Každá varianta má stav, textový důvod a zdroj:
-- **✓ Vyhovuje podle zdrojů** — všechny aktuálně vybrané podmínky jsou splněné;
+- **✓ Vyhovuje podle zdrojů** — všechny aktuálně vybrané podmínky **na úrovni pokoje** jsou splněné;
 - **✕ Nevyhovuje** — alespoň jedna vybraná podmínka má doloženou neshodu;
 - **? K ověření** — není známá neshoda, ale alespoň jedna vybraná podmínka není doložená.
 
 Doložená neshoda má přednost před chybějícími údaji. Uvést všechny relevantní důvody, nejen barevnou ikonu. Hodnotit **podle aktuální volby filtrů**, nikoli stále podle napevno uloženého skóre. Bez vybraných podmínek nepředstírat ověřenou vhodnost.
 
-Hotelové podmínky (pláž) se uplatní na každou variantu tohoto hotelu. Pokojové podmínky se musí všechny sejít na **stejném typu pokoje**. Plochu jedné varianty nelze zkombinovat s lůžky jiné.
+Hotelové podmínky (pláž, vzdálenost, případně pozvolný vstup) jsou vlastností celého hotelu, proto se vyhodnocují a ukazují **jednou za hotel** — řádek nad seznamem variant, ne opakování u každého pokoje. Vyhovující variota kvůli nim neztrácí ✓; opačně hotel vyhoví jen tehdy, když platí jeho hotelové podmínky **a** zároveň existuje varianta splňující všechny pokojové podmínky. Pokojové podmínky se musí všechny sejít na **stejném typu pokoje**. Plochu jedné varianty nelze zkombinovat s lůžky jiné.
 
 ### P-09: Dva režimy výběru
 
