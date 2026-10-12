@@ -17,6 +17,9 @@ from datetime import datetime,timezone
 
 ROOT=Path(__file__).resolve().parents[1]
 
+# Kolik položek se vyjmenuje do reportu. Skutečné počty (changes_counts) se tím omezené nesmí být.
+LIST_CAP=40
+
 def parse_args():
  p=argparse.ArgumentParser(description=__doc__,formatter_class=argparse.RawDescriptionHelpFormatter)
  p.add_argument('--url-file',default=str(ROOT/'data/search_prices_url.txt'),help='EXIM results URL, one search; the wide 2+2 search returns ~190 offers')
@@ -27,6 +30,7 @@ def parse_args():
  p.add_argument('--out',help='report path; default <data-dir>/refresh-report.json')
  p.add_argument('--force-live',action='store_true',help='allow a live run even when the sandbox blocks eximtours.cz')
  p.add_argument('--reparse',action='store_true',help='recompute automatic room facts from stored descriptions; no fetching')
+ p.add_argument('--list-cap',type=int,default=LIST_CAP,help='kolik položek se vyjmenuje v reportu, 0 = vyjmenovat vše; počty se počítají z plného rozsahu')
  return p.parse_args()
 
 def snapshot(db):
@@ -80,20 +84,33 @@ def assessment_counts():
  return counts,sorted(hotels_pass)
 
 def main():
- args=parse_args();target=Path(args.data_dir).resolve();target.mkdir(parents=True,exist_ok=True)
+ args=parse_args();target=Path(args.data_dir).resolve()
+ # Úklid smí odstranit jen soubory, které vytvořil tento běh — core.init zakládá schéma už
+ # při importu, takže prázdná databáze může vzniknout i když dál nedojde. Co tu bylo předem,
+ # to se nemaže a nepřepíše.
+ had_contents=target.is_dir() and any(target.iterdir());had_db=(target/'hotels.sqlite').exists()
+ target.mkdir(parents=True,exist_ok=True)
  os.environ['DATA_DIR']=str(target)
  db=target/'hotels.sqlite'
- before=snapshot(db) if db.exists() else {'hotels':{},'fetch_urls':{},'rooms':{},'facts':{}}
- if db.exists() and not args.no_backup:
-  stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ');backup=target/f'backup-before-refresh-{stamp}.sqlite'
-  with sqlite3.connect(db) as src,sqlite3.connect(backup) as dst:src.backup(dst)
-  print(f'Záloha: {backup}')
+ def abandon(note):
+  '''Start, který selhal ještě před zásahem do dat, v cíli nezanechá prázdnou databázi.'''
+  print(note)
+  if not had_db:
+   for stray in (db,Path(str(db)+'-wal'),Path(str(db)+'-shm')):
+    try:stray.unlink()
+    except OSError:pass
+  if not had_contents:
+   try:target.rmdir()
+   except OSError:pass
+  return 2
  sys.path.insert(0,str(ROOT))
  import importer
  if args.reparse:
   urls=[];mode='reparse'
  elif args.archive:
-  folder=Path(args.archive);manifest=json.loads((folder/'manifest.json').read_text())
+  folder=Path(args.archive)
+  try:manifest=json.loads((folder/'manifest.json').read_text())
+  except OSError as e:return abandon(f'Archiv {folder} se nepodařilo načíst ({type(e).__name__}). Do katalogu jsme nesáhli.')
   html={r['url']:(folder/r['file']).read_text() for r in manifest['records']}
   urls=list(html);importer.fetch=lambda u:html[u];importer.time.sleep=lambda _:None
   if args.limit:urls=urls[:args.limit];result_note=f'ČÁSTEČNÝ BĚH: {len(urls)} z {len(html)} záznamů archivu.'
@@ -102,14 +119,21 @@ def main():
   url=Path(args.url_file).read_text().strip()
   if not args.force_live and os.environ.get('ALLOW_EXIM_NETWORK','0')!='1':
    try:importer.fetch(importer.api_search_url(url))
+
    except Exception as e:
-    print(f'EXIM není dosažitelný ({type(e).__name__}). Zkuste --archive pro nácvik, nebo na vlastním PC --force-live.')
-    return 2
+     return abandon(f'EXIM není dosažitelný ({type(e).__name__}). Zkuste --archive pro nácvik, nebo na vlastním PC --force-live. Do katalogu jsme nesáhli.')
   if args.limit:
    urls=importer.discover(url,progress=lambda m:print('  '+m,flush=True),keep_context=True)
    result_note=f'ČÁSTEČNÝ BĚH: {len(urls[:args.limit])} z {len(urls)} nalezených detailů; katalog zůstane neúplný.'
   else:urls=[url]
   mode=f'live EXIM import from {url.split("?")[0]}'
+ # teprve teď, kdy víme že se bude pracovat: stav před změnou a záloha
+ # rozhoduji podle had_db: prázdnou schému tu nechal už import, to není katalog k zálohování
+ before=snapshot(db) if had_db else {'hotels':{},'fetch_urls':{},'rooms':{},'facts':{}}
+ if had_db and not args.no_backup:
+  stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ');backup=target/f'backup-before-refresh-{stamp}.sqlite'
+  with sqlite3.connect(db) as src,sqlite3.connect(backup) as dst:src.backup(dst)
+  print(f'Záloha: {backup}')
  started=time.time()
  if args.reparse:
   touched=reparse_rooms()
@@ -122,15 +146,21 @@ def main():
  after=snapshot(db)
  result['before']={'hotels':len(before['hotels']),'rooms':sum(1 for v in before['rooms'].values() if v),'fetch_urls':sum(1 for v in before['fetch_urls'].values() if v)}
  result['after']={'hotels':len(after['hotels']),'rooms':sum(1 for v in after['rooms'].values() if v),'fetch_urls':sum(1 for v in after['fetch_urls'].values() if v)}
+ CAP=None if args.list_cap<=0 else args.list_cap # 0 znamená „nekrátit“
+ facts_changed=sorted(f'{h} / {n} / {k}: {before["facts"][(h,n,k)]} → {v}' for (h,n,k),v in after['facts'].items() if (h,n,k) in before['facts'] and before['facts'][(h,n,k)]!=v)
+ facts_added=sorted(f'{h} / {n} / {k} = {v}' for (h,n,k),v in after['facts'].items() if (h,n,k) not in before['facts'])
+ facts_lost=sorted(f'{h} / {n} / {k}' for (h,n,k) in set(before['facts'])-set(after['facts']))
  result['changes']={
   'hotels_added':sorted(set(after['hotels'])-set(before['hotels'])),
   'hotels_removed':sorted(set(before['hotels'])-set(after['hotels'])),
   'rooms_added':sorted(f'{h} / {n}' for (h,n,o),v in after['rooms'].items() if v and (h,n,o) not in before['rooms']),
   'rooms_deactivated':sorted(f'{h} / {n}' for (h,n,o),v in before['rooms'].items() if (h,n,o) not in after['rooms'] or not after['rooms'].get((h,n,o),False)),
-  'facts_changed':sorted(f'{h} / {n} / {k}: {before["facts"][(h,n,k)]} → {v}' for (h,n,k),v in after['facts'].items() if (h,n,k) in before['facts'] and before['facts'][(h,n,k)]!=v),
-   'facts_added':sorted(f'{h} / {n} / {k} = {v}' for (h,n,k),v in after['facts'].items() if (h,n,k) not in before['facts'])[:40],
-   'facts_lost':[f'{h} / {n} / {k}' for (h,n,k) in set(before['facts'])-set(after['facts'])][:40],
+  'facts_changed':facts_changed[:CAP],
+  'facts_added':facts_added[:CAP],
+  'facts_lost':facts_lost[:CAP],
  }
+ result['changes_counts']={'hotels_added':len(result['changes']['hotels_added']),'hotels_removed':len(result['changes']['hotels_removed']),'rooms_added':len(result['changes']['rooms_added']),'rooms_deactivated':len(result['changes']['rooms_deactivated']),'facts_changed':len(facts_changed),'facts_added':len(facts_added),'facts_lost':len(facts_lost)}
+ result['changes_list_cap']=CAP # null = ve reportu je celý výčet
  with sqlite3.connect(db) as c:
   result['integrity']=c.execute('PRAGMA integrity_check').fetchone()[0]
   result['manual_facts_kept']=c.execute("SELECT count(*) FROM facts WHERE kind='manual'").fetchone()[0]
@@ -144,7 +174,8 @@ def main():
  print(f"Chyby: {len(result['errors'])}, upozornění: {len(result['warnings'])}, trvalo {result['duration_seconds']} s.")
  print(f"Hotelů {result['before']['hotels']} → {result['after']['hotels']}, aktivních pokojových záznamů {result['before']['rooms']} → {result['after']['rooms']}, fetch_url {result['before']['fetch_urls']} → {result['after']['fetch_urls']}.")
  for key,label in [('hotels_added','přidáno hotelů'),('hotels_removed','zmizelo hotelů'),('rooms_added','přidáno typů'),('rooms_deactivated','deaktivováno typů'),('facts_added','doloženo nových faktů'),('facts_changed','změněných faktů'),('facts_lost','ztracených faktů')]:
-  print(f"  {label.strip()}: {len(result['changes'][key])}")
+  n=result['changes_counts'][key];listed=len(result['changes'][key])
+  print(f"  {label.strip()}: {n}"+(f" (ve výčtu prvních {CAP}, zbytek jen spočítán)" if n>listed else ''))
   for line in result['changes'][key][:6]:print('     ',line)
  print(f"Rodinná předvolba (2+2, bez palandy, písek) nad těmito daty: ✓ {counts['pass']} variant, ? {counts['unknown']}, ✕ {counts['fail']}, {counts['no_rooms']} hotelů bez pokojů.")
  print(f"Celoživotně vyhovující hotely: {', '.join(passing) if passing else 'žádné'}")

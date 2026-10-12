@@ -139,8 +139,8 @@ Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catal
 | Archiv 965 variant: `separate = ano` | 102 → **158** |
 | Archiv 965 variant: `doors = ano` | 17 → **53** |
 | Mylná `ano` u alternativní dispozice vrácena na `?` | **3** |
-| `--reparse` nad `reports/prices-2027` (192 hotelů, 937 typů) | 40 nových faktů, 0 změněných, 0 chyb, 0,7 s, integrita `ok` |
-| Off-line testová sada | **94 passed** |
+| `--reparse` nad `reports/prices-2027` (192 hotelů, 937 typů) | **99 doložených faktů** v 73 tipech, 0 změněných, 6 stažených, 0 chyb, ~0,6 s, integrita `ok` |
+| Off-line testová sada | **94 passed** → po úpravě hodnocení **101 passed** |
 
 Žádné síťové volání: režim pracuje výhradně s texty, které už jsou v databázi.
 
@@ -149,10 +149,24 @@ Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catal
 | Kontrola | Výsledek |
 |---|---|
 | `tests/test_assessment_scopes.py` (logika UI přes node, 5 scénářů) | **5 passed** |
-| Celá off-line sada | **99 passed**, 24 deselected |
+| Celá off-line sada | **101 passed**, 25 deselected |
 | Výskyt údaje o pláži v hodnocení varianty (vzorek hotelů) | **0×**, dříve u každé varianty |
-| `--reparse` nad `reports/prices-2027` | 40 nových faktů, 0 změněných, integrita `ok` |
+| `--reparse` nad `reports/prices-2027` | 99 doložených, 0 změněných, 6 stažených, integrita `ok` |
+| zkrácený vs. plný výčet reportu (`--list-cap 2` / `0`) | shodné `changes_counts`, výčet zkrácený jen na 2 |
 
 `tests/test_chromium.py` má nově scénář `test_beach_verdict_once_per_hotel_not_per_variant`:
 na každé kartě právě jeden `.assessment.hotel` a žádný výskyt „Pouze písek“ v `.variant-row`.
 Neověřeno: Chromium tady spustit nelze (chybí `playwright`) — test poběží na vašem stroji.
+
+### 12. 10. 2026: počty v reportu proti krácení výčtu
+
+Přepočet `reports/prices-2027` ukázal, že report i konzole uváděly délku zkráceného výčtu
+jako součet: dvakrát hlásily „40 doložených, 0 ztracených“, skutečnost je **99 doložených
+a 6 ztracených** (3 alternativní dispozice × 2 pole, viz HISTORIE). Nyní `changes_counts`
+nese plné počty, `changes` zůstává výčtem o velikosti `--list-cap` (výchozí 40, `0` = vše)
+a konzole u zkrácení řekne, že zbytek je jen spočítán.
+
+| Test | Výsledek |
+|---|---|
+| `test_report_counts_survive_the_shortened_listing` | zkrácený i plný běh hlásí stejné `changes_counts` |
+| Celá off-line sada | **101 passed**, 25 deselected |

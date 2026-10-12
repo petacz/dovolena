@@ -175,7 +175,8 @@ python tools/refresh_catalog.py --reparse --data-dir data
 Kolónka `ztracených faktů` v reportu není chyba: jsou to tvrzení, která nový parser už nedělá (například alternativní dispozice „jedna místnost nebo dvě“ se nyní hodnotí `?`, ne `✓`). Ruční ověření a ověřené doplňkové zdroje se nepřepočítávají ani nemažou.
 
 - Vyhledávací URL určuje rozsah. `data/search_prices_url.txt` je současné široké hledání (2 dospělí, děti 9/7, léto 2027, ~190 nabídek); `data/search_large_url.txt` se liší jen věkem 8/6 a nechává se pro reprodukci historických testů v6.
-- Před živým během skript ověří dostupnost API. Když zdroj neodpovídá, skončí s vysvětlením a do dat nesahne; `--force-live` přeskočí pouze tuto předkontrolu, ne kontrolu úplnosti.
+- Před živým během skript ověří dostupnost API. Když zdroj neodpovídá, skončí s vysvětlením a do dat nesahne — v cíli nezanechá ani prázdnou databázi, ani její zálohu; `--force-live` přeskočí pouze tuto předkontrolu, ne kontrolu úplnosti.
+- Výčet změn v reportu se krátil na 40 položek, což vypadalo jako nižší rozsah změny. Plné počty jsou od té doby v `changes_counts`, velikost výčtu řídí `--list-cap` (`0` = vypsat vše).
 - `--limit N` stáhne jen prvních N detailů — rozumné první oťukání živého zdroje. Report pak jasně řekne, že jde o částečný běh.
 - Report `refresh-report.json` v cílovém adresáři obsahuje přidané a deaktivované typy, změněné fakty, integritu a počty rodinné předvolby ✓ / ? / ✕ nad aktuálními daty.
 - Opakovaný běh nad nezměněným zdrojem hlásí nulu ve všech koloncích změn; import proto ničím nepřepiše, co source stále tvrdí stejně.
