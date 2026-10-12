@@ -102,6 +102,7 @@ def main():
   'rooms_added':sorted(f'{h} / {n}' for (h,n,o),v in after['rooms'].items() if v and (h,n,o) not in before['rooms']),
   'rooms_deactivated':sorted(f'{h} / {n}' for (h,n,o),v in before['rooms'].items() if (h,n,o) not in after['rooms'] or not after['rooms'].get((h,n,o),False)),
   'facts_changed':sorted(f'{h} / {n} / {k}: {before["facts"][(h,n,k)]} → {v}' for (h,n,k),v in after['facts'].items() if (h,n,k) in before['facts'] and before['facts'][(h,n,k)]!=v),
+   'facts_added':sorted(f'{h} / {n} / {k} = {v}' for (h,n,k),v in after['facts'].items() if (h,n,k) not in before['facts'])[:40],
    'facts_lost':[f'{h} / {n} / {k}' for (h,n,k) in set(before['facts'])-set(after['facts'])][:40],
  }
  with sqlite3.connect(db) as c:
@@ -116,7 +117,7 @@ def main():
  print(f"Staženo {result['ok']}/{result['attempted']} detailů, {result['discovered']} nalezených URL, {result['complete']} s popisem pokojů, {result['incomplete']} jen metadata.")
  print(f"Chyby: {len(result['errors'])}, upozornění: {len(result['warnings'])}, trvalo {result['duration_seconds']} s.")
  print(f"Hotelů {result['before']['hotels']} → {result['after']['hotels']}, aktivních pokojových záznamů {result['before']['rooms']} → {result['after']['rooms']}, fetch_url {result['before']['fetch_urls']} → {result['after']['fetch_urls']}.")
- for key,label in [('hotels_added','přidáno hotelů'),('hotels_removed','zmizelo hotelů'),('rooms_added','přidáno typů'),('rooms_deactivated',' deaktivováno typů'),('facts_changed','změněných faktů'),('facts_lost','ztracených faktů')]:
+ for key,label in [('hotels_added','přidáno hotelů'),('hotels_removed','zmizelo hotelů'),('rooms_added','přidáno typů'),('rooms_deactivated','deaktivováno typů'),('facts_added','doloženo nových faktů'),('facts_changed','změněných faktů'),('facts_lost','ztracených faktů')]:
   print(f"  {label.strip()}: {len(result['changes'][key])}")
   for line in result['changes'][key][:6]:print('     ',line)
  print(f"Rodinná předvolba (2+2, bez palandy, písek) nad těmito daty: ✓ {counts['pass']} variant, ? {counts['unknown']}, ✕ {counts['fail']}, {counts['no_rooms']} hotelů bez pokojů.")

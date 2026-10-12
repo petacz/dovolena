@@ -16,7 +16,9 @@ def test_refresh_reports_only_real_changes(tmp_path):
  assert first['after']['rooms']>0 and first['mode'].startswith('offline replay')
  # Re-importing the same source text must not look like an update.
  second=run(tmp_path,'--limit','6')
- assert second['changes']=={'hotels_added':[],'hotels_removed':[],'rooms_added':[],'rooms_deactivated':[],'facts_changed':[],'facts_lost':[]}
+ assert second['changes']=={'hotels_added':[],'hotels_removed':[],'rooms_added':[],'rooms_deactivated':[],'facts_added':[],'facts_changed':[],'facts_lost':[]}
+ # A fresh catalog reports every fact as added; the point is that a repeat run adds nothing.
+ assert first['changes']['facts_added'] and second['changes']['facts_added']==[]
  assert second['before']==second['after']
 
 def test_refresh_backs_up_an_existing_catalog_only(tmp_path):
