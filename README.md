@@ -32,7 +32,7 @@ Archiv obsahuje všechny tyto dokumenty, kód, SQLite databázi, zdrojové URL, 
 
 Předvolba **Naše rodina** vyžaduje oddělené ložnice nebo místnosti, dvě samostatné dětské postele, bez palandy a písečnou pláž včetně vstupu podle zdroje. **Výslovné potvrzení dveří není nutné.** Dveře, pozvolnost vstupu, plocha a vzdálenost zůstávají volitelné filtry.
 
-Výchozí obrazovka ukazuje všechny varianty s ikonou a důvody: **✓ vyhovuje podle zdrojů / ✕ nevyhovuje / ? k ověření**. Ikona hodnotí aktuálně vybrané podmínky pokoje i hotelové pláže. Nepotvrzuje dostupnost zájezdu. Chybějící údaj se nezaměňuje za neshodu; známá neshoda má přednost před nejistotou.
+Výchozí obrazovka ukazuje všechny varianty s ikonou a důvody: **✓ vyhovuje podle zdrojů / ✕ nevyhovuje / ? k ověření**. Podmínky se posuzují ve své rovině: ikona u varianty hodnotí jen požadavky na pokoj, údaj o pláži a vzdálenosti se vyhodnocuje jednou za celý hotel (řádek „Hotel …“ nad seznamem variant), aby vyhovující pokoj nevypadal jako nevyhovující kvůli pláži. Obojí se ve výsledku stále slučuje bytovou kombinací – hotel vyhoví jen tehdy, když platí jeho hotelové podmínky a zároveň existuje varianta splňující podmínky pokojové. Nepotvrzuje dostupnost zájezdu. Chybějící údaj se nezaměňuje za neshodu; známá neshoda má přednost před nejistotou.
 
 Přepínač **Zobrazit i nevyhovující** je výchozí zapnutý. Po vypnutí skutečné filtrování ponechá hotely s alespoň jednou vhodnou variantou; uvnitř hotelu stále ukazuje všechny typy. Textové hledání a oblíbené fungují v obou režimech. CSV obsahuje podkladové hodnoty, nikoli grafické ikonky.
 

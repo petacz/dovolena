@@ -143,3 +143,16 @@ Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catal
 | Off-line testová sada | **94 passed** |
 
 Žádné síťové volání: režim pracuje výhradně s texty, které už jsou v databázi.
+
+### 12. 10. 2026 v noci: rozdělení hodnocení podle roviny (pokoj vs. hotel)
+
+| Kontrola | Výsledek |
+|---|---|
+| `tests/test_assessment_scopes.py` (logika UI přes node, 5 scénářů) | **5 passed** |
+| Celá off-line sada | **99 passed**, 24 deselected |
+| Výskyt údaje o pláži v hodnocení varianty (vzorek hotelů) | **0×**, dříve u každé varianty |
+| `--reparse` nad `reports/prices-2027` | 40 nových faktů, 0 změněných, integrita `ok` |
+
+`tests/test_chromium.py` má nově scénář `test_beach_verdict_once_per_hotel_not_per_variant`:
+na každé kartě právě jeden `.assessment.hotel` a žádný výskyt „Pouze písek“ v `.variant-row`.
+Neověřeno: Chromium tady spustit nelze (chybí `playwright`) — test poběží na vašem stroji.

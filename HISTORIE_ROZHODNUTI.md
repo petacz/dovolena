@@ -85,3 +85,35 @@ Přidán režim `tools/refresh_catalog.py --reparse`, který přepočítá autom
 Zároveň zpřesnění, aby oprava nebyla jen přesnější: popis „jedna prostornější místnost nebo dvě místnosti oddělené posuvnými dveřmi“ je alternativa, ne tvrzení o oddělení. Původní parser u tří suit tvrdil `dveře = ano` i `oddělení = ano`; to bylo špatně a nové pravidlo je vrací na `?`. Je to zároveň jediný případ, kdy report hlásí `ztracené fakty` — záměrně, ne regresi.
 
 Nad 965 archivovanými variantami: `oddělené místnosti = ano` 102 → 158, `zavíratelné dveře = ano` 17 → 53, 3 dříve mylná `ano` stažena zpět na `?`. Přepočtem `reports/prices-2027` (937 typů) přibylo 40 faktů za 0,7 s, integrita `ok`. Rodinná předvolba nad těmito daty zůstává 2 vyhovující varianty / 724 k ověření / 211 nevyhovujících, protože u Annabelle zdroj píše o dispozici, ale už ne o dětských postelích ani o povrchu pláže — proto `?`, nikoli `✓`.
+
+## 12. 10. 2026 (v noci): Údaj o pláži patří hotelu, ne každé variantě
+
+Uživatel správně upozornil na nepřehlednost: „Pouze písek (včetně vstupu)“ se objevovalo
+v seznamu „Nedoloženo“ u každého typu ubytování zvlášť, takže vyhovující pokoj vypadal
+jako „? K ověření“ kvůli pláži — a doložený štěrk dokonce přebarvoval všechny varianty
+na „✕ Nevyhovuje“, i když o dispozici zdroj říkal „ano“.
+
+Funkční význam se nemění: `core.search()` už předtím dělil požadavky podle rozsahu
+(`hf` proti faktům hotelu, `rf` proti faktům konkrétního typu) a hotel zůstal ve výsledku
+jen při splnění obou rovin. Šlo o prezentaci — `assessment()` v UI vyhodnocovala všechny
+požadavky najednou, takže hotelový údaj tekl do hodnocení varianty.
+
+Rozhodnutí: `evaluate(h,r,scope)` vyhodnotí jen požadavky dané roviny. Hodnocení varianty
+dostává pouze pokojové podmínky, řádek `.assessment.hotel` nad seznamem variant podmínky
+hotelové (včetně varování o neaktuálním importu, které se dříve opakovalo u každé varianty).
+Bez požadavku v dané rovině se nic netvrdí: varianta hlásí „— Bez požadavků na pokoj“
+a řádek hotelu se vůbec nevykreslí. Třída `hotel` je jen vizuální (levý proužek), barvy
+podle stavu zůstávají. Souhrn nad výsledky nově uvádí zvlášť „Hotel: ✓/?/✕“, aby bylo jasné,
+kolik variant se rozpadlo kvůli pláži a kolik kvůli dispozici.
+
+Stejná úprava platí i v detailu hotelu, kde řádek visí pod faktovými poli hotelu.
+Testovatelnost: logiku UI lze kontrolovat bez prohlížeče — `tests/test_assessment_scopes.py`
+načte `static/app.js`, přes node vyhodnotí oddělený blok a hlídá, že se pláž u varianty
+neobjeví nikdy a nejistota aspoň jednou na úrovni hotelu. DOM část zůstává v
+`tests/test_chromium.py`.
+
+Drobnost, která vyšla najevo u přepočtu: `reports/final` i `reports/prices-2027` obsahují
+9 dvojic téhož hotelu pod odlišným URL (190 řádků = 181 různých hotelů, v databázi s cenami
+192 řádků) — EXIM uvádí týž hotel pod dvěma letovisky, a protože deduplikace běží podle URL,
+nesloučil je. `--reparse` oba záznamy přepočítá zvlášť a shodně; jejich sloučení je
+samostatné rozhodnutí, zatím nedělané.

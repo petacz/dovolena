@@ -12,3 +12,6 @@ reports/*/*-shm
 
 # Bezpečnostní kopie, které vytvoří tools/refresh_catalog.py před každým obnovením.
 reports/**/backup-before-refresh-*.sqlite
+
+# test: každý běh pytestu uloží replay do reports/<časové razítko>/ — nejsou to dodané výstupy
+reports/20*/

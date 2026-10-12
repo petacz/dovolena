@@ -79,13 +79,13 @@ Počet skutečně importovaných hotelů a rozsah importu musí být zřejmé. P
 ### P-08: Ukázat všechny varianty s ikonami
 
 Výchozí obrazovka zobrazuje **všechny evidované varianty pokoje u každého nalezeného hotelu**, nikoli jen jednu doporučenou. Každá varianta má stav, textový důvod a zdroj:
-- **✓ Vyhovuje podle zdrojů** — všechny aktuálně vybrané podmínky jsou splněné;
+- **✓ Vyhovuje podle zdrojů** — všechny aktuálně vybrané podmínky **na úrovni pokoje** jsou splněné;
 - **✕ Nevyhovuje** — alespoň jedna vybraná podmínka má doloženou neshodu;
 - **? K ověření** — není známá neshoda, ale alespoň jedna vybraná podmínka není doložená.
 
 Doložená neshoda má přednost před chybějícími údaji. Uvést všechny relevantní důvody, nejen barevnou ikonu. Hodnotit **podle aktuální volby filtrů**, nikoli stále podle napevno uloženého skóre. Bez vybraných podmínek nepředstírat ověřenou vhodnost.
 
-Hotelové podmínky (pláž) se uplatní na každou variantu tohoto hotelu. Pokojové podmínky se musí všechny sejít na **stejném typu pokoje**. Plochu jedné varianty nelze zkombinovat s lůžky jiné.
+Hotelové podmínky (pláž, vzdálenost, případně pozvolný vstup) jsou vlastností celého hotelu, proto se vyhodnocují a ukazují **jednou za hotel** — řádek nad seznamem variant, ne opakování u každého pokoje. Vyhovující variota kvůli nim neztrácí ✓; opačně hotel vyhoví jen tehdy, když platí jeho hotelové podmínky **a** zároveň existuje varianta splňující všechny pokojové podmínky. Pokojové podmínky se musí všechny sejít na **stejném typu pokoje**. Plochu jedné varianty nelze zkombinovat s lůžky jiné.
 
 ### P-09: Dva režimy výběru
 
