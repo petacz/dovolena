@@ -98,3 +98,22 @@ Docker build a fyzický Raspberry Pi, dlouhodobá stabilita interního EXIM API,
 ## Upřesnění rozsahu výsledků po připomínce uživatele
 
 Výsledky výše nadále popisují naměřenou implementaci v6. Nedokazují úplnost obecného katalogu pokojů hotelu: šlo o stažení konkrétních detailních URL v daném kontextu. U Asterias nebyla doložena absence obecného hotelového popisu, pouze prázdný popis v testované nabídce. Nové požadavky §11 POZADAVKY.md a scénáře G nejsou těmito testy potvrzené. Aplikace nebyla v rámci tohoto dokumentačního upřesnění změněna ani znovu testována.
+
+## 11. 10. 2026: Ověření pravidla „palanda jen z přímého uvedení“
+
+Rozsah: pravidlo P-02 se neměnilo, ověřoval se jeho současný výklad a doplnily se pojistky. Python 3.11, `beautifulsoup4==4.14.3`, `soupsieve==2.10`, offline (`-m "not live and not chromium"`).
+
+| Kontrola | Naměřeno |
+|---|---:|
+| Off-line testová sada | **87 passed / 0 failed**, 24 deselected (live, bulk, chromium, prices) |
+| Testy palandy v `tests/test_parser_variants.py` | 29 collectionů, z toho 17 nových |
+| Archivy EXIM: varianty celkem | 36 (snapshots) + 929 (katalog 190) = **965** |
+| Varianty s `✕` pro `no_bunk` | **5** (z toho 5 × přímá zmínka o palandě) |
+| `✕` bez zmínky o palandě v názvu či popisu daného typu | **0** |
+| Varianty bez zmínky → `?` (žádný fakt) | 32 z 43 v dodané DB |
+| Dopad započtení názvu typu do `room_values` | **0 ze 1002** archivovaných variant změnilo výsledek |
+| Živý API test nad dodanou DB, filtr samotný `no_bunk` | přísný režim 4 hotely / 6 variant; se „Zahrnout neověřené“ 6 hotelů / 38 variant, vyřazeno právě 5 pokojů s uvedenou palandou |
+
+Oprava závislosti: s `soupsieve==3.0.1` selže i selektor `span`, tedy všechny `BeautifulSoup.select` volání. Import EXIM i cenové API by končily `SelectorSyntaxError`; requirements proto fixují `soupsieve==2.10`.
+
+**Neověřeno v tomto prostředí:** sestavení Docker image, live testy proti eximtours.cz (sem nedovoleno), Chromium E2E (chyběl binární prohlížeč), fyzické Raspberry Pi. Testovací běh dočasně vytvořil `reports/<timestamp>/`; výsledek replay je regenerovatelný `python -m pytest`.

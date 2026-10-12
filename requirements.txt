@@ -1,4 +1,6 @@
 Flask==3.1.2
 requests==2.32.5
 beautifulsoup4==4.14.3
+# BeautifulSoup.select needs soupsieve <3; 3.0.x rejects every selector and would break the EXIM parser and price API.
+soupsieve==2.10
 gunicorn==23.0.0

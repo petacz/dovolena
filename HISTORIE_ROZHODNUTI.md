@@ -51,3 +51,13 @@ Uživatel opravil propojení pokojového katalogu s nabídkou a upřesnil, že c
 ## V7: Nové hledání 9/7 a ceny podle typů
 
 Uživatel potvrdil zachování období a 10–15 nocí a opravil věk dětí na 9/7. Přidán samostatný cenový konektor, oddělené cenové profily a zdrojové nabídky. Během ověření se ukázalo, že cenové API může nabídnout návrat mimo interval; proto se upravuje horní mez odletu a kontrolují skutečné vrácené termíny. Ceny se nepřiřazují podle podobnosti jmen a neomezují obecný katalog. Přesné výsledky nového běhu uvádí CENY_REPORT.md.
+
+## 11. 10. 2026: Palanda — ✕ pouze z přímého uvedení (ověření, pojistky, oprava závislosti)
+
+Uživatel upřesnil, že prodejci absenci palandy v popisu nevylučují, a požaduje, aby nevyhovujícím se stal pouze pokoj, u kterého je palanda uvedena. Ověřeno nad dodanými daty: z 43 variant zmiňuje palandu 5 a právě těch 5 má ✕; žádná neshoda bez zmínky; 32 variant je ?. Pravidlo P-02 ani referenční výsledek 3 vyhovující / 16 k ověření / 24 nevyhovujících se nemění, proto zůstává i výchozí přísný režim „pouze doložené“. Zda se má i ve skrývajícím režimu chovat „neuvedeno“ jako kandidát, řeší existující přepínač Zahrnout neověřené; uživatel pro tento výklad nic neměnil.
+
+Technické volby, které pravidlo nemění:
+1. Upřesnění P-02 a akceptační scénář A18; obranná větev pro „bez palandy“ zůstává, ač se v datech neuplatnila ani jednou.
+2. Parser hodnotí i název typu jako součást jeho textu (`room_values(title+': '+description)`), aby „Rodinný pokoj s palandou“ v názvu nemohl uniknout posouzení. Na všech 1002 archivovaných variantách je změna bez dopadu na výsledky — naměřeno.
+3. Popisky přepínačů rozlišují označení a skrytí: „Zobrazit i nevyhovující a nedoložené“ a stavový řádek říká, že bez „Zahrnout neověřené“ se skrývá i chybějící údaj.
+4. `requirements.txt` fixuje `soupsieve==2.10`: soupsieve 3.0.1 odmítá každý CSS selektor, čímž rozbije `BeautifulSoup.select` a tím i EXIM parser a cenové API. Off-line sada 87 testů (29 v test_parser_variants.py) proběhla bez networku.

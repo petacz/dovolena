@@ -104,7 +104,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Na Windows aktivace prostředí: `.venv\Scripts\activate`. Produkční prohlížení i import používá pouze HTTP/JSON, Chromium není potřeba. Pro Chromium testy viz TESTOVANI.md.
+Na Windows aktivace prostředí: `.venv\Scripts\activate`. `requirements.txt` fixuje `soupsieve==2.10`, protože soupsieve 3.x odmítá selektory a znehodnotí parser EXIM i cenové API. Produkční prohlížení i import používá pouze HTTP/JSON, Chromium není potřeba. Pro Chromium testy viz TESTOVANI.md.
 
 Pro běžný Linux server použijte místo vývojového Flask serveru:
 
@@ -154,6 +154,7 @@ Tabulka shrnuje uložené zdroje, není zárukou stavu nebo doporučením k reze
 ## Význam údajů a omezení parseru
 
 - **Ano/ne/neuvedeno** nejsou zaměnitelné. Absence slova „palanda“ neznamená, že tam palanda není.
+- Palanda je `✕` jedině tehdy, když ji zdroj u daného typu přímo uvádí — tedy i tehdy, pokud jde jen o volitelnou přistýlku pro další osobu. Název „… s palandou“ se počítá jako uvedení. Obrátit ji na `✓` umí formulace „bez palandy“ / „no bunk beds“; jiné negace parser nepozná a opravuje je ruční ověření.
 - „Rodinný pokoj“ sám neprokazuje dvě místnosti. Oddělená ložnice neprokazuje dveře. Dvě postele pro rodiče neprokazují dvě dětská lůžka.
 - Písek znamená, že popis pláže uvádí písek a nezmiňuje kameny/oblázky, včetně vstupu. Není to ověření terénu ani záruka každého metru pláže.
 - U plochy 35–40 m² se filtr porovnává s dolní hranicí 35 m²; celý rozsah zůstává v citaci. Nejednoznačná jednotka `32m` zůstává bez číselného údaje.

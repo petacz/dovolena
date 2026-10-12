@@ -123,7 +123,8 @@ def parse_exim(html):
    start=text.find(title,pos);end=text.find(titles[n+1],start+len(title)) if n+1<len(titles) else len(text)
    if start<0 or end<start:raise ValueError('Nerozpoznané hranice typů pokojů; import zastaven.')
    desc=text[start:end].split('Ostatní typy pokojů')[0].strip();pos=end
-   rooms.append({'name':title,'description':desc,'values':room_values(desc)})
+   # The variant's own title counts as its text: „Rodinný pokoj s palandou“ is an explicit mention.
+   rooms.append({'name':title,'description':desc,'values':room_values(title+': '+desc)})
  if not beach_parts:
   for text in location_parts:
    beach_parts.extend(sentence for sentence in re.split(r'(?<=[.!?])\s+',text) if 'plaz' in fold(sentence) or 'vstup' in fold(sentence))

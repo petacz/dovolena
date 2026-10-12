@@ -1,4 +1,5 @@
 from pathlib import Path
+from conftest import ROOT
 import pytest
 import core
 pytestmark=pytest.mark.unit
@@ -55,3 +56,36 @@ def test_unbold_single_room_heading():
  p=core.parse_exim((FIX/'apartmentos-estival-park.html').read_text())
  assert p['rooms'][0]['name']=='Apartmá, 1 ložnice'
  assert not p['warnings']
+
+# --- Palanda: neshoda pouze z přímého uvedení v textu daného typu ---
+BUNK=('paland','bunk bed')
+def mentions_bunk(text):return any(x in core.fold(text) for x in BUNK)
+def rooms_of(path):return core.parse_exim(path.read_text())['rooms']
+
+@pytest.mark.parametrize('slug',['estival-islantilla','hotel-san-antonio','marsenses-ferrera-blanca-family-hotel','arion-green-riviera','marsenses-ferrera-blanca-hotel','apartmentos-estival-park','thalassa-superior','atlantica-sungarden-beach'])
+def test_silence_about_bunk_is_never_a_mismatch(slug):
+ for r in rooms_of(FIX/(slug+'.html')):
+  if not mentions_bunk(f"{r['name']}: {r['description']}"):
+   assert r['values'].get('no_bunk') is not False,r['name']
+
+@pytest.mark.parametrize('index',range(6))
+def test_bunk_mismatch_needs_explicit_mention_in_snapshots(index):
+ for r in rooms_of(ROOT/'data'/f'exim-{index}.html'):
+  if r['values'].get('no_bunk') is False:
+   assert mentions_bunk(f"{r['name']}: {r['description']}"),r['name']
+
+def test_bunk_reference_counts_over_archived_exim():
+ # Archivovaná HTML jsou neměnná, proto zde fixujeme i referenční počty.
+ rooms=[r for i in range(6) for r in rooms_of(ROOT/'data'/f'exim-{i}.html')]
+ flagged=[r for r in rooms if r['values'].get('no_bunk') is False]
+ assert len(rooms)==36 and len(flagged)==5
+ assert all(mentions_bunk(f"{r['name']}: {r['description']}") for r in flagged)
+
+def test_bunk_wording_is_literal_not_optimistic():
+ assert core.room_values('Rodinný pokoj s palandou')['no_bunk'] is False
+ assert core.room_values('Family room, bunk bed available for the 4th person')['no_bunk'] is False
+ assert core.room_values('Rodinný pokoj, dvě jednolůžkové postele pro děti')['no_bunk'] is True
+ assert core.room_values('Rodinný pokoj bez palandy')['no_bunk'] is True
+ # Zdroje absenci palandy dle uživatele nepíší; jiná negace se nedokládá a řeší ji ruční ověření.
+ assert core.room_values('Palanda není k dispozici')['no_bunk'] is False
+ assert 'no_bunk' not in core.room_values('Rodinný pokoj, 2 místnosti')

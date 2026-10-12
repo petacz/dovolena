@@ -31,6 +31,8 @@ Jeden velký pokoj se čtyřmi lůžky nevyhovuje. Samotný název „rodinný p
 
 Uživatel požaduje dvě samostatná dětská lůžka a žádnou palandu. Dvě postele uvedené pro rodiče nejsou důkazem dvou dětských postelí. Chybějící zmínka o palandě není důkazem její nepřítomnosti.
 
+Pravidlo pro prvotní hodnocení (upřesnění 11. 10. 2026): neshodu `✕` v poli „Bez palandy pro děti“ smí vytvořit jedině přímá zmínka o palandě v názvu nebo popisu téhož typu ubytování, a to bez ohledu na to, zda je palanda hlavní konfigurací lůžek nebo jen volitelnou přistýlkou pro další osobu. Není-li palanda uvedena, `✕` nikdy nevznikne — varianta zůstane `?`, případně `✓` z doložených samostatných dětských postelí. Uživatel počítá s tím, že zdroje absenci palandy formulací „palanda není“ nepíší; doklad „bez palandy“ proto nevzniká z mlčení. Obrátit zmínku na `✓` umí parser jen u formulací „bez paland“ / „no bunk beds“. Jiná negace (například „palanda není k dispozici“) zůstává mylně `✕` a smí ji opravit jedině ruční ověření s citací, nikoli domýšlení parseru.
+
 Dosavadní produktové pravidlo: dvě běžné samostatné postele vyhovují; společná rozkládací pohovka nevyhovuje a dvě samostatné pohovky se nepovažují za dvě běžné postele. Typ přistýlky evidovat v popisu. Případné budoucí zmírnění pravidla pro pohovky musí být výslovné, nikoli tichý odhad implementátora.
 
 Pokud je popsané více možných konfigurací lůžek, neoznačit celou variantu bezpodmínečně jako vyhovující, když část konfigurací nevyhovuje. Zachovat podmínky a uvést důvod či potřebu ověření.
