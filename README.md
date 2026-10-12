@@ -149,6 +149,30 @@ Tabulka shrnuje uložené zdroje, není zárukou stavu nebo doporučením k reze
 - Neúspěšná stránka nepřepíše poslední funkční záznam. Chyby se zobrazí v importní historii. Při přejmenování pokoje vzniká nový typ, starý se deaktivuje a jeho ruční poznámky zůstávají v databázi.
 - Aktualizace není plánovaná automaticky. Spouští se na požádání.
 
+### Celý katalog jedním příkazem (například všech ~190 hotelů)
+
+`tools/refresh_catalog.py` nejdřív zálohuje, pak stáhne všechny stránky výsledků hledání přes JSON API, každou nabídku uloží a na konci napíše, co se oproti předchozímu stavu změnilo.
+
+```bash
+# 1) Nácvik offline proti archivovaným popisům: žádná síť, žádná rizika
+python tools/refresh_catalog.py --archive tests/fixtures/catalog-190 --data-dir /tmp/nacvik
+
+# 2) Ostrý běh do KOPIE katalogu — vaše stávající data zůstanou nedotčená
+cp -r data /tmp/katalog-190
+python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir /tmp/katalog-190
+DATA_DIR=/tmp/katalog-190 python app.py
+
+# 3) Spokojeni? až potom aktualizujte svůj běžný katalog
+python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir data
+```
+
+- Vyhledávací URL určuje rozsah. `data/search_prices_url.txt` je současné široké hledání (2 dospělí, děti 9/7, léto 2027, ~190 nabídek); `data/search_large_url.txt` se liší jen věkem 8/6 a nechává se pro reprodukci historických testů v6.
+- Před živým během skript ověří dostupnost API. Když zdroj neodpovídá, skončí s vysvětlením a do dat nesahne; `--force-live` přeskočí pouze tuto předkontrolu, ne kontrolu úplnosti.
+- `--limit N` stáhne jen prvních N detailů — rozumné první oťukání živého zdroje. Report pak jasně řekne, že jde o částečný běh.
+- Report `refresh-report.json` v cílovém adresáři obsahuje přidané a deaktivované typy, změněné fakty, integritu a počty rodinné předvolby ✓ / ? / ✕ nad aktuálními daty.
+- Opakovaný běh nad nezměněným zdrojem hlásí nulu ve všech koloncích změn; import proto ničím nepřepiše, co source stále tvrdí stejně.
+- Ruční ověření (`manual`) a ověřené doplňkové zdroje (`reviewed`) zůstávají, maže se pouze `auto`.
+
 **Automatický konektor je pouze pro EXIM.** Oficiální weby a jiní prodejci byli použiti při prvním výzkumu; jejich údaje jsou uložené odděleně. Aplikace neobsahuje univerzální crawler ani automatické AI dohledávání libovolných hotelů. Další zdroje lze zapisovat jako ruční ověření s URL a citací. `enrich.py` je pomocný jednorázový výzkumný skript, nikoli obecný importér; některé weby přímé HTTP požadavky blokují. Rozhodující je dodaná databáze včetně textů získaných při výzkumu.
 
 ## Význam údajů a omezení parseru

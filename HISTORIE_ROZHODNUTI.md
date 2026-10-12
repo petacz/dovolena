@@ -61,3 +61,9 @@ Technické volby, které pravidlo nemění:
 2. Parser hodnotí i název typu jako součást jeho textu (`room_values(title+': '+description)`), aby „Rodinný pokoj s palandou“ v názvu nemohl uniknout posouzení. Na všech 1002 archivovaných variantách je změna bez dopadu na výsledky — naměřeno.
 3. Popisky přepínačů rozlišují označení a skrytí: „Zobrazit i nevyhovující a nedoložené“ a stavový řádek říká, že bez „Zahrnout neověřené“ se skrývá i chybějící údaj.
 4. `requirements.txt` fixuje `soupsieve==2.10`: soupsieve 3.0.1 odmítá každý CSS selektor, čímž rozbije `BeautifulSoup.select` a tím i EXIM parser a cenové API. Off-line sada 87 testů (29 v test_parser_variants.py) proběhla bez networku.
+
+## 12. 10. 2026: Jednorázová obnova celého katalogu příkazem
+
+Uživatel chce stáhnout a aktualizovat data u všech ~190 hotelů. Živý import z tohoto prostředí možný nebyl (povolené připojení jen pro GitHub, npm a PyPI; `www.eximtours.cz` i s vyřešenou adresou selže na TLS), proto byl přidán `tools/refresh_catalog.py`: záloha přes SQLite Backup API, živý běh jedním příkazem s předkontrolou dostupnosti, volitelný `--limit` a `--archive` nácvik nad archivy, report změn a počty rodinné předvolby. Jde o technickou pomůcku, ne o nové produktové pravidlo; chování kolektorů, filtrů ani hodnocení se nemění.
+
+Nacvičeno offline nad 190 archivovanými popisy: 190/190 uloženo, 0 chyb, 3 upozornění, integrita `ok`, opakovaný běh hlásí 0 změněných faktů a 0 nových/zaniklých typů — skript tedy data sama od sebe nepřepisuje. Nad těmito archivovanými daty (pořízení 8. 10. 2026, nikoli živý stav) rodinná předvolba ukazuje 2 vyhovující varianty, 717 k ověření, 210 nevyhovujících a 1 hotel bez popisů pokojů; plně doloženou shodu má jen Aldemar Olympian Village. Nové `tests/test_refresh_tool.py` (3 testy) drží idempotenci, zálohování i formát reportu.
