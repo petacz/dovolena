@@ -2,6 +2,10 @@
 
   python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir reports/final
   python tools/refresh_catalog.py --archive tests/fixtures/catalog-190 --data-dir /tmp/rehearsal
+  python tools/refresh_catalog.py --reparse --data-dir data
+
+--reparse needs no network at all: it re-derives the room facts from the descriptions the
+database already holds, so a parser fix lands in already downloaded data without a download.
 
 Live mode hits eximtours.cz: all result pages via JSON API, then one HTTP detail per offer
 (0,6 s between them). Offline mode replays archived HTML, so it rehearses the pipeline
@@ -22,6 +26,7 @@ def parse_args():
  p.add_argument('--no-backup',action='store_true',help='skip the pre-refresh SQLite backup')
  p.add_argument('--out',help='report path; default <data-dir>/refresh-report.json')
  p.add_argument('--force-live',action='store_true',help='allow a live run even when the sandbox blocks eximtours.cz')
+ p.add_argument('--reparse',action='store_true',help='recompute automatic room facts from stored descriptions; no fetching')
  return p.parse_args()
 
 def snapshot(db):
@@ -37,6 +42,20 @@ def snapshot(db):
   q="SELECT h.url h, r.name n, f.key k, f.value v FROM facts f JOIN hotels h ON h.id=f.hotel_id LEFT JOIN rooms r ON r.id=f.room_id WHERE f.kind='auto'"
   for r in c.execute(q):facts[(r['h'],r['n'],r['k'])]=r['v']
  return {'hotels':hotels,'fetch_urls':fetch_urls,'rooms':rooms,'facts':facts}
+
+def reparse_rooms():
+ """Re-derive automatic room facts from stored descriptions. Supplementary sources keep their own kind."""
+ import core
+ touched=[]
+ with core.connect() as c:
+  for r in c.execute("SELECT r.id,r.hotel_id,r.name,r.description,r.source_id FROM rooms r WHERE r.active=1 AND r.origin='EXIM'"):
+   values=core.room_values((r['name'] or '')+': '+(r['description'] or ''))
+   before={x['key']:x['value'] for x in c.execute("SELECT key,value FROM facts WHERE room_id=? AND kind='auto'",(r['id'],))}
+   c.execute("DELETE FROM facts WHERE room_id=? AND kind='auto'",(r['id'],))
+   for k,v in values.items():core.fact(c,r['hotel_id'],r['id'],k,v,r['description'],r['source_id'])
+   after={x['key']:x['value'] for x in c.execute("SELECT key,value FROM facts WHERE room_id=? AND kind='auto'",(r['id'],))}
+   if before!=after:touched.append((r['name'],after))
+ return touched
 
 FAMILY=[('sand','hotel'),('separate','room'),('twin','room'),('no_bunk','room')]
 def assess(hfacts,rfacts):
@@ -71,7 +90,9 @@ def main():
   print(f'Záloha: {backup}')
  sys.path.insert(0,str(ROOT))
  import importer
- if args.archive:
+ if args.reparse:
+  urls=[];mode='reparse'
+ elif args.archive:
   folder=Path(args.archive);manifest=json.loads((folder/'manifest.json').read_text())
   html={r['url']:(folder/r['file']).read_text() for r in manifest['records']}
   urls=list(html);importer.fetch=lambda u:html[u];importer.time.sleep=lambda _:None
@@ -90,7 +111,12 @@ def main():
   else:urls=[url]
   mode=f'live EXIM import from {url.split("?")[0]}'
  started=time.time()
- result=importer.run(urls,progress=lambda m:print('  '+m,flush=True))
+ if args.reparse:
+  touched=reparse_rooms()
+  result={'ok':len(touched),'attempted':0,'discovered':len(touched),'complete':len(touched),'incomplete':0,'warnings':[],'errors':[],'discovery':[],'note':'--reparse: automatické fakty pokojů přepočteny z uložených popisů; stažené texty se neměnily','reparsed_rooms_with_changes':len(touched)}
+  mode='reparse of stored descriptions (no network)';print(f'  přepočteno {result["ok"]} typů s novým výsledkem')
+ else:
+  result=importer.run(urls,progress=lambda m:print('  '+m,flush=True))
  result['mode']=mode;result['duration_seconds']=round(time.time()-started,1)
  if 'result_note' in locals():result['partial']=result_note;print('  '+result_note)
  after=snapshot(db)

@@ -166,6 +166,14 @@ DATA_DIR=/tmp/katalog-190 python app.py
 python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir data
 ```
 
+**Změna parseru nevyžaduje stažení.** Texty popisů už v databázi jsou, proto `--reparse` přepočítá automatické fakty pokojů z uložených popisů bez jediné sítové žádosti:
+
+```bash
+python tools/refresh_catalog.py --reparse --data-dir data
+```
+
+Kolónka `ztracených faktů` v reportu není chyba: jsou to tvrzení, která nový parser už nedělá (například alternativní dispozice „jedna místnost nebo dvě“ se nyní hodnotí `?`, ne `✓`). Ruční ověření a ověřené doplňkové zdroje se nepřepočítávají ani nemažou.
+
 - Vyhledávací URL určuje rozsah. `data/search_prices_url.txt` je současné široké hledání (2 dospělí, děti 9/7, léto 2027, ~190 nabídek); `data/search_large_url.txt` se liší jen věkem 8/6 a nechává se pro reprodukci historických testů v6.
 - Před živým během skript ověří dostupnost API. Když zdroj neodpovídá, skončí s vysvětlením a do dat nesahne; `--force-live` přeskočí pouze tuto předkontrolu, ne kontrolu úplnosti.
 - `--limit N` stáhne jen prvních N detailů — rozumné první oťukání živého zdroje. Report pak jasně řekne, že jde o částečný běh.

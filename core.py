@@ -59,6 +59,9 @@ def area(text):
 DOOR=re.compile(r'\bdvere\b|\bdveri\b|\bdvermi\b|\bdverich\b|\bdoors?\b')
 DOOR_DENIED=re.compile(r'nejsou[^.;,]{0,40}?dver|bez dver|zadn[ée] dver|without door|no door')
 DOOR_DIVIDES=re.compile(r'oddelen|rozdel|separated|mezi pokoji|mezi loznic|propojen|connecting|sliding|between (?:the )?rooms')
+# „jedna prostornější místnost NEBO dvě oddělené dveřmi“ je alternativa, ne tvrzení (P-02 totéž chce u lůžek).
+ALTERNATIVE_LAYOUT=re.compile(r'(?:jedna\s+\w*\s*mistnost|open\s+plan|one\s+room)\s*(?:nebo|or)\s*(?:dve|2|two)?\s*\w*\s*(?:mistnost|pokoj|room)')
+CLAUSES=re.compile(r'[.;,\n]')
 EXPLICIT_SEPARATION=re.compile(r'(?:\bdve\b|\bdva\b|\btwo\b|\b2\b|\b3\b|\btri\b)\s+(?:oddelen\w*|propojen\w*|spojen\w*)?\s*(?:mistnost|pokoje|pokoj|loznice|bedroom|room)|(?:mistnosti|pokoje|loznice|cast)\s+(?:jsou\s+)?oddelen\w*')
 def room_values(t):
  x=fold(t);v={'area':area(t)}
@@ -70,6 +73,11 @@ def room_values(t):
    if not DOOR.search(clause):continue
    if DOOR_DENIED.search(clause):v['doors']=False;break
    if DOOR_DIVIDES.search(clause):v.update(separate=True,doors=True);break
+ if ALTERNATIVE_LAYOUT.search(x):
+  # Keep a claim only when some other sentence states the division unconditionally.
+  for clause in CLAUSES.split(x):
+   if DOOR.search(clause) and DOOR_DIVIDES.search(clause) and not re.search(r'\bnebo\b|\bor\b',clause):break
+  else:v.pop('separate',None);v.pop('doors',None)
  if 'open plan' in x or 'jedna mistnost' in x:v.update(separate=False,doors=False)
  if 'paland' in x or 'bunk bed' in x:v['no_bunk']=bool(re.search(r'bez paland|no bunk beds?',x))
  if re.search(r'dve jednoluzkove.*(?:ve spolecne|pro deti)|(?:2|two) (?:single|normal) beds.*(?:children|kids)|double bed.*(?:2|two) (?:single|normal) beds',x):

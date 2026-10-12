@@ -105,3 +105,11 @@ def test_balcony_door_is_not_treated_as_a_room_divider():
 
 def test_explicitly_undivided_rooms_are_a_mismatch_not_a_maybe():
  assert core.room_values('Mezonet: v přízemí ložnice, v patře druhá ložnice, nejsou oddělené dveřmi')['doors'] is False
+
+def test_alternative_layout_is_uncertainty_not_a_claim():
+ # Zdroj nabízí dvě varianty; i kdyby jedna vyhovovala, nelze tvrdit, že vyhovuje pokoj.
+ t='Suite: jedna prostornější místnost nebo dvě místnosti oddělené posuvnými dveřmi'
+ assert 'separate' not in core.room_values(t) and 'doors' not in core.room_values(t)
+ # Bezpodmínečné tvrzení jinde v tomže popisu zůstává doložené.
+ v=core.room_values('Ložnice oddělena dveřmi. K dostání též jako jedna prostorná místnost nebo dvě.')
+ assert v['separate'] is True and v['doors'] is True

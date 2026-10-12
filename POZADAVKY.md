@@ -36,6 +36,8 @@ Pravidlo pro prvotní hodnocení (upřesnění 11. 10. 2026): neshodu `✕` v po
 
 Dosavadní produktové pravidlo: dvě běžné samostatné postele vyhovují; společná rozkládací pohovka nevyhovuje a dvě samostatné pohovky se nepovažují za dvě běžné postele. Typ přistýlky evidovat v popisu. Případné budoucí zmírnění pravidla pro pohovky musí být výslovné, nikoli tichý odhad implementátora.
 
+Stejné pravidlo platí i pro dispozici: „jedna prostornější místnost nebo dvě místnosti oddělené posuvnými dveřmi“ je alternativa, nikoli tvrzení, že oddělení je — výsledek je `?`, ne `✓`.
+
 Pokud je popsané více možných konfigurací lůžek, neoznačit celou variantu bezpodmínečně jako vyhovující, když část konfigurací nevyhovuje. Zachovat podmínky a uvést důvod či potřebu ověření.
 
 ### P-03: Plocha a maximum dostupných detailů
@@ -68,7 +70,7 @@ Ruční ověření musí vyžadovat vysvětlení nebo citaci. Uchovat historii a
 
 ### P-07: Import
 
-Importovat původních šest hotelů a umožnit další importy. Neúspěšné stažení či změna struktury webu nesmí smazat předchozí platná data. Deduplikovat hotelové URL, zobrazovat průběh a chyby. Respektovat podmínky webů, používat timeouty a omezenou frekvenci; neobcházet přihlášení, CAPTCHA ani blokace.
+Importovat původních šest hotelů a umožnit další importy. Neúspěšné stažení či změna struktury webu nesmí smazat předchozí platná data. Změna pravidla parseru se nesmí vydávat za nutnost znovu stahovat: uložený popis typu ubytování stačí přepočítat (režim `--reparse`), zdroje ani ruční ověření se tím nemění. Deduplikovat hotelové URL, zobrazovat průběh a chyby. Respektovat podmínky webů, používat timeouty a omezenou frekvenci; neobcházet přihlášení, CAPTCHA ani blokace.
 
 Počet skutečně importovaných hotelů a rozsah importu musí být zřejmé. Pokud konektor načte jen první/vykreslenou stránku výsledků, musí to výslovně říct. Nepředstírat podporu univerzálního prohledávání webu.
 

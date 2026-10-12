@@ -131,3 +131,15 @@ Nad 965 archivovanými varianty (6 snapshotů + archiv 190 hotelů), Python 3.11
 | off-line testová sada | 90 passed | **93 passed** |
 
 Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catalog-190 --data-dir <kopie>`: 190/190, 0 chyb, integrita `ok`, rodinná předvolba ✓ 2 / ? 717 / ✕ 210; opakovaný běh hlásí 0 nových, 0 změněných a 0 ztracených faktů. Živý běh proti eximtours.cz v tomto prostředí nebyl možný.
+
+### 12. 10. 2026 večer: `--reparse` — přepočet bez stahování
+
+| Měřeno | Výsledek |
+|---|---:|
+| Archiv 965 variant: `separate = ano` | 102 → **158** |
+| Archiv 965 variant: `doors = ano` | 17 → **53** |
+| Mylná `ano` u alternativní dispozice vrácena na `?` | **3** |
+| `--reparse` nad `reports/prices-2027` (192 hotelů, 937 typů) | 40 nových faktů, 0 změněných, 0 chyb, 0,7 s, integrita `ok` |
+| Off-line testová sada | **94 passed** |
+
+Žádné síťové volání: režim pracuje výhradně s texty, které už jsou v databázi.

@@ -75,3 +75,13 @@ Uživatel nahlásil, že ANNABELLE BEACH RESORT má u rodinného pokoje psáno �
 Oprava: `EXPLICIT_SEPARATION` bere i „dva/dvě/two/3“ plus „propojené/spojené“ a `DOOR_DIVIDES` hodnotí dveře jako dělicí prvek větu od věty, nikoli v celém popisu. Dveře na balkon nebo terasu proto `ano` nevyrobí a „nejsou oddělené dveřmi“ je doložené `ne`, nikoli nejistota. Žádné pravidlo se tím nemění — P-01 stále vyžaduje pro prvotní výběr jen oddělení, dveře zůstávají volitelný přísnější filtr.
 
 Dopad na 965 archivovaných variant: `oddělené místnosti = ano` 102 → 161, `dveře = ano` 17 → 56, žádné dříve detekované tvrzení neztrateno, 0 změn v šesti dodaných snapshotech (referenční výsledek 3/16/24 ani testy `test_app.py` se nemění). Nové testy `test_doors_dividing_rooms_are_recorded`, `test_balcony_door_is_not_treated_as_a_room_divider`, `test_explicitly_undivided_rooms_are_a_mismatch_not_a_maybe`; scénáře A19–A21. V archivu není jediné „bez propojení“, proto nebyla přidaná žádné pravidlo pro vyvrácení propojení — dva nezávislé pokoje zůstávají k ověření podle P-01.
+
+## 12. 10. 2026 (večer): Oprava se má promítnout do stažených dat bez stahování
+
+Uživatel správně namítl, že data už stažená jsou: v `reports/final` i `reports/prices-2027` leží Annabelin popis „dvě místnosti oddělené dveřmi“ v `rooms.description`, chyběly jen odvozené fakty, protože je vytvořil starý parser. Oprava parseru se tedy bez dalšího zásahu do zdrojů nijak neprojeví — data jsou v pořádku, zastaralý je výklad.
+
+Přidán režim `tools/refresh_catalog.py --reparse`, který přepočítá automatické fakty typů ubytování z textu uloženého v databázi. Bez sítě, bez nového stahování, s backupem a stejným reportem; doplňkové zdroje (`reviewed`) a ruční ověření (`manual`) se přepisovat nesmí, proto se maže a vkládá pouze `kind='auto'` nad pokoji s `origin='EXIM'`.
+
+Zároveň zpřesnění, aby oprava nebyla jen přesnější: popis „jedna prostornější místnost nebo dvě místnosti oddělené posuvnými dveřmi“ je alternativa, ne tvrzení o oddělení. Původní parser u tří suit tvrdil `dveře = ano` i `oddělení = ano`; to bylo špatně a nové pravidlo je vrací na `?`. Je to zároveň jediný případ, kdy report hlásí `ztracené fakty` — záměrně, ne regresi.
+
+Nad 965 archivovanými variantami: `oddělené místnosti = ano` 102 → 158, `zavíratelné dveře = ano` 17 → 53, 3 dříve mylná `ano` stažena zpět na `?`. Přepočtem `reports/prices-2027` (937 typů) přibylo 40 faktů za 0,7 s, integrita `ok`. Rodinná předvolba nad těmito daty zůstává 2 vyhovující varianty / 724 k ověření / 211 nevyhovujících, protože u Annabelle zdroj píše o dispozici, ale už ne o dětských postelích ani o povrchu pláže — proto `?`, nikoli `✓`.
