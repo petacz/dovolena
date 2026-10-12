@@ -26,6 +26,9 @@ U scénářů dispozice předpokládej splnění ostatních vybraných podmínek
 | A16 | Plocha 35–40 m² | Minimum 35 splněno, minimum 38 nikoli; originální rozsah dostupný v citaci. |
 | A17 | Plocha neuvedena | Zobrazit neuvedeno, nikoli 0 m²; při aktivním plošném filtru zachovat nejistotu. |
 | A18 | Popis ani název typu neobsahuje „palanda“ / „bunk bed“ | Varianta nikdy nedostane ✕ kvůli palandě. ✕ je výhradně tam, kde zdroj palandu u tohoto typu přímo uvádí (i jako volitelnou přistýlku). |
+| A19 | „Dvě místnosti oddělené dveřmi“ (slovně, bez číslice) | Oddělené místnosti = ano a dveře = ano, s citací původní věty. |
+| A20 | „Dveře na balkon, terasa“ | Dveře mezi pokoji zůstanou neuvedeno; balkonové dveře se nesmí počítat. |
+| A21 | „…dvě ložnice, nejsou oddělené dveřmi“ | Oddělení lze posoudit z popisu, dveře = ne (doložený rozpor), tedy při zapnutém dveřním filtru ✕. |
 
 Scénáře A09–A11 a A18 kryjí automatické testy `test_bunk_*` a `test_no_*_bunk_*` nad 36 variantami archivovaných EXIM snapshotů a nad 929 variantami archivu 190 hotelů; na všech 965 variantách platí, že ✕ existuje jen u doložené zmínky.
 

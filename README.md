@@ -178,6 +178,7 @@ python tools/refresh_catalog.py --url-file data/search_prices_url.txt --data-dir
 ## Význam údajů a omezení parseru
 
 - **Ano/ne/neuvedeno** nejsou zaměnitelné. Absence slova „palanda“ neznamená, že tam palanda není.
+- Dveře mezi pokoji se počítají jen tehdy, když v téže větě dělí místnosti, ložnici nebo pokoje; „dveře na balkon“ ne. Skloňování (dveřmi/dveří) a slovně zapsané číslice („dvě místnosti“) parser zvládá, explicitní „nejsou oddělené dveřmi“ vyhodnotí jako `ne`.
 - Palanda je `✕` jedině tehdy, když ji zdroj u daného typu přímo uvádí — tedy i tehdy, pokud jde jen o volitelnou přistýlku pro další osobu. Název „… s palandou“ se počítá jako uvedení. Obrátit ji na `✓` umí formulace „bez palandy“ / „no bunk beds“; jiné negace parser nepozná a opravuje je ruční ověření.
 - „Rodinný pokoj“ sám neprokazuje dvě místnosti. Oddělená ložnice neprokazuje dveře. Dvě postele pro rodiče neprokazují dvě dětská lůžka.
 - Písek znamená, že popis pláže uvádí písek a nezmiňuje kameny/oblázky, včetně vstupu. Není to ověření terénu ani záruka každého metru pláže.

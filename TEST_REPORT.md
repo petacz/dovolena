@@ -117,3 +117,17 @@ Rozsah: pravidlo P-02 se neměnilo, ověřoval se jeho současný výklad a dopl
 Oprava závislosti: s `soupsieve==3.0.1` selže i selektor `span`, tedy všechny `BeautifulSoup.select` volání. Import EXIM i cenové API by končily `SelectorSyntaxError`; requirements proto fixují `soupsieve==2.10`.
 
 **Neověřeno v tomto prostředí:** sestavení Docker image, live testy proti eximtours.cz (sem nedovoleno), Chromium E2E (chyběl binární prohlížeč), fyzické Raspberry Pi. Testovací běh dočasně vytvořil `reports/<timestamp>/`; výsledek replay je regenerovatelný `python -m pytest`.
+
+### 12. 10. 2026: Oprava čtení dveří a oddělení
+
+Nad 965 archivovanými varianty (6 snapshotů + archiv 190 hotelů), Python 3.11, `soupsieve==2.10`, offline:
+
+| Měřeno | Před | Po |
+|---|---:|---:|
+| `oddělené místnosti = ano` | 102 | **161** |
+| `zavíratelné dveře = ano` | 17 | **56** |
+| ztracených dříve detekovaných tvrzení | – | **0** |
+| změna v šesti dodaných snapshotech (36 variant) | – | **0** |
+| off-line testová sada | 90 passed | **93 passed** |
+
+Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catalog-190 --data-dir <kopie>`: 190/190, 0 chyb, integrita `ok`, rodinná předvolba ✓ 2 / ? 717 / ✕ 210; opakovaný běh hlásí 0 nových, 0 změněných a 0 ztracených faktů. Živý běh proti eximtours.cz v tomto prostředí nebyl možný.

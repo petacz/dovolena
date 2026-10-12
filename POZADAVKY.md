@@ -23,6 +23,7 @@ Za vhodnou dispozici pro prvotní výběr považovat:
 
 **Dvě oddělené ložnice nebo místnosti stačí. Není nutné, aby zdroj výslovně uváděl dveře.** Nevyřazovat variantu ani ji nesnižovat na „k ověření“ pouze kvůli chybějící informaci o dveřích.
 
+Při čtení zdroje platí: „dvě místnosti oddělené dveřmi“, „2 pokoje oddělené dveřmi“, „ložnice a obývací část oddělená dveřmi“ i anglické „two rooms separated by a door“ jsou výslovné potvrzení obojího — oddělení i dveří. Slovně zapsaná číslice se rovná číslici, skloňování („dveřmi“, „dveří“) se rovná 1. pádu. Dveře na balkon či terasu nejsou dělicí dveře a nesmí vytvořit `ano`. Explicitní „nejsou oddělené dveřmi“ je doložené `ne`, nikoli nejistota.
 Výslovná zmínka o dveřích je užitečný doplňkový údaj. Lze nabídnout samostatný, ve výchozím stavu vypnutý přísnější filtr na dveře. Bez důkazu nepřepisovat samotný údaj o dveřích na „ano“ — mění se požadavek, nikoli zdrojová fakta.
 
 Jeden velký pokoj se čtyřmi lůžky nevyhovuje. Samotný název „rodinný pokoj“ či „suite“ nedokazuje oddělené místnosti. Dvě explicitně oddělené místnosti s posuvnou stěnou vyhovují prvotnímu dispozičnímu filtru. Dva nezávislé pokoje bez potvrzeného propojení nepovažovat automaticky za vyhovující společné ubytování.

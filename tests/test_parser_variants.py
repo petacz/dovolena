@@ -89,3 +89,19 @@ def test_bunk_wording_is_literal_not_optimistic():
  # Zdroje absenci palandy dle uživatele nepíší; jiná negace se nedokládá a řeší ji ruční ověření.
  assert core.room_values('Palanda není k dispozici')['no_bunk'] is False
  assert 'no_bunk' not in core.room_values('Rodinný pokoj, 2 místnosti')
+
+# --- Dveře mezi pokoji: záleží na skloňování i na tom, co dveře dělí ---
+def test_doors_dividing_rooms_are_recorded():
+ # Nahlášeno uživatelem: EXIM píše „dvě místnosti oddělené dveřmi“ a parser to přehlédl.
+ v=core.room_values('Rodinný pokoj: dvě místnosti oddělené dveřmi, pokoje umístěné v bungalovech')
+ assert v['separate'] is True and v['doors'] is True
+ assert core.room_values('Family room: two rooms separated by a door')['doors'] is True
+ assert core.room_values('Rodinný pokoj, propojený: dva propojené pokoje')['separate'] is True
+ assert core.room_values('Ložnice oddělena posuvnými dveřmi')['doors'] is True
+
+def test_balcony_door_is_not_treated_as_a_room_divider():
+ assert 'doors' not in core.room_values('Suita: jedna prostorná místnost, dveře na balkon, terasa')
+ assert 'doors' not in core.room_values('Pokoj s výhledem: dveře, okno, vysoušeč vlasů')
+
+def test_explicitly_undivided_rooms_are_a_mismatch_not_a_maybe():
+ assert core.room_values('Mezonet: v přízemí ložnice, v patře druhá ložnice, nejsou oddělené dveřmi')['doors'] is False

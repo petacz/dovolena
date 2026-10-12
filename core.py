@@ -54,10 +54,22 @@ def area(text):
  m=re.search(r'(\d+(?:[,.]\d+)?)(?:\s*[/–-]\s*(\d+(?:[,.]\d+)?))?\s*(?:m[²2]|sq\.?\s*m|sqm)',text,re.I)
  return float(m[1].replace(',','.')) if m else None
 
+# Czech inflection matters: „dveřmi“, „dveří“, „dveře“ all fold to different stems, and
+# suppliers spell small numbers out („dvě místnosti oddělené dveřmi“). Patterns read folded text.
+DOOR=re.compile(r'\bdvere\b|\bdveri\b|\bdvermi\b|\bdverich\b|\bdoors?\b')
+DOOR_DENIED=re.compile(r'nejsou[^.;,]{0,40}?dver|bez dver|zadn[ée] dver|without door|no door')
+DOOR_DIVIDES=re.compile(r'oddelen|rozdel|separated|mezi pokoji|mezi loznic|propojen|connecting|sliding|between (?:the )?rooms')
+EXPLICIT_SEPARATION=re.compile(r'(?:\bdve\b|\bdva\b|\btwo\b|\b2\b|\b3\b|\btri\b)\s+(?:oddelen\w*|propojen\w*|spojen\w*)?\s*(?:mistnost|pokoje|pokoj|loznice|bedroom|room)|(?:mistnosti|pokoje|loznice|cast)\s+(?:jsou\s+)?oddelen\w*')
 def room_values(t):
  x=fold(t);v={'area':area(t)}
- if re.search(r'oddelene? loznic|oddelenou loznic|oddelena loznic|2 mistnost|2 pokoj|two separate|two bedrooms|two separate areas',x):v['separate']=True
+ if re.search(r'oddelene? loznic|oddelenou loznic|oddelena loznic|2 mistnost|2 pokoj|two separate|two bedrooms|two separate areas',x) or EXPLICIT_SEPARATION.search(x):v['separate']=True
  if re.search(r'(?:posuvn\w*|spojovac\w*) dver|sliding door|connecting door',x):v.update(separate=True,doors=True)
+ # Only a clause that divides rooms counts; „dveře na balkon“ must never become an argument.
+ elif DOOR.search(x):
+  for clause in re.split(r'[.;,\n]',x):
+   if not DOOR.search(clause):continue
+   if DOOR_DENIED.search(clause):v['doors']=False;break
+   if DOOR_DIVIDES.search(clause):v.update(separate=True,doors=True);break
  if 'open plan' in x or 'jedna mistnost' in x:v.update(separate=False,doors=False)
  if 'paland' in x or 'bunk bed' in x:v['no_bunk']=bool(re.search(r'bez paland|no bunk beds?',x))
  if re.search(r'dve jednoluzkove.*(?:ve spolecne|pro deti)|(?:2|two) (?:single|normal) beds.*(?:children|kids)|double bed.*(?:2|two) (?:single|normal) beds',x):
