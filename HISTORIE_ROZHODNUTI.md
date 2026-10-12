@@ -84,7 +84,7 @@ Přidán režim `tools/refresh_catalog.py --reparse`, který přepočítá autom
 
 Zároveň zpřesnění, aby oprava nebyla jen přesnější: popis „jedna prostornější místnost nebo dvě místnosti oddělené posuvnými dveřmi“ je alternativa, ne tvrzení o oddělení. Původní parser u tří suit tvrdil `dveře = ano` i `oddělení = ano`; to bylo špatně a nové pravidlo je vrací na `?`. Je to zároveň jediný případ, kdy report hlásí `ztracené fakty` — záměrně, ne regresi.
 
-Nad 965 archivovanými variantami: `oddělené místnosti = ano` 102 → 158, `zavíratelné dveře = ano` 17 → 53, 3 dříve mylná `ano` stažena zpět na `?`. Přepočtem `reports/prices-2027` (937 typů) přibylo 40 faktů za 0,7 s, integrita `ok`. Rodinná předvolba nad těmito daty zůstává 2 vyhovující varianty / 724 k ověření / 211 nevyhovujících, protože u Annabelle zdroj píše o dispozici, ale už ne o dětských postelích ani o povrchu pláže — proto `?`, nikoli `✓`.
+Nad 965 archivovanými variantami: `oddělené místnosti = ano` 102 → 158, `zavíratelné dveře = ano` 17 → 53, 3 dříve mylná `ano` stažena zpět na `?`. Přepočtem `reports/prices-2027` (937 typů) přibylo 99 faktů v 73 typu ubytování, 0 změněných a 6 stažených (3 alternativní dispozice × 2 pole), integrita `ok`. Rodinná předvolba nad těmito daty zůstává 2 vyhovující varianty / 724 k ověření / 211 nevyhovujících, protože u Annabelle zdroj píše o dispozici, ale už ne o dětských postelích ani o povrchu pláže — proto `?`, nikoli `✓`.
 
 ## 12. 10. 2026 (v noci): Údaj o pláži patří hotelu, ne každé variantě
 
@@ -111,6 +111,22 @@ Testovatelnost: logiku UI lze kontrolovat bez prohlížeče — `tests/test_asse
 načte `static/app.js`, přes node vyhodnotí oddělený blok a hlídá, že se pláž u varianty
 neobjeví nikdy a nejistota aspoň jednou na úrovni hotelu. DOM část zůstává v
 `tests/test_chromium.py`.
+
+## 12. 10. 2026: report nesmí krácení výčtu tvářit jako menší změnu
+
+Ověření čísel pro tento text odhalilo chybu v reportu: `facts_added` a `facts_lost` se do
+souboru i na konzoli ukládaly zkrácené na 40 položek a tisk hlásil jejich délku. Přepočet
+`reports/prices-2027` tedy dvakrát vykázal „40 doložených, 0 ztracených“ fakty, zatímco
+skutečně šlo o **99 doložených a 6 ztracených**. Číslo, které uživatel uvidí, tak bylo
+ukazatelem na horní mez výčtu, ne na rozsah změny — a u opakovaného běhu by to mohlo
+vysílit „0“ tam, kde změna je.
+
+Oprava: plné počty jdou do nového klíče `changes_counts`, `changes` zůstává výčtem (a proto
+se jmenuje jako výčet, ne jako součet). Velikost výčtu je přepínač `--list-cap`, výchozí 40,
+`0` = vyjmenovat vše; report pak nese `changes_list_cap: null`. Konzore u zkráceného výčtu
+řekne „(ve výčtu prvních 40, zbytek jen spočítán)“, aby zkratka nebyla tichá. Test
+`test_report_counts_survive_the_shortened_listing` drží, že zkrácený i plný výčet hlásí
+táž čísla a že počet nikdy nedosedne na délku výčtu.
 
 Drobnost, která vyšla najevo u přepočtu: `reports/final` i `reports/prices-2027` obsahují
 9 dvojic téhož hotelu pod odlišným URL (190 řádků = 181 různých hotelů, v databázi s cenami
