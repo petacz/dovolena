@@ -34,7 +34,9 @@ Předvolba **Naše rodina** vyžaduje oddělené ložnice nebo místnosti, dvě 
 
 Výchozí obrazovka ukazuje všechny varianty s ikonou a důvody: **✓ vyhovuje podle zdrojů / ✕ nevyhovuje / ? k ověření**. Podmínky se posuzují ve své rovině: ikona u varianty hodnotí jen požadavky na pokoj, údaj o pláži a vzdálenosti se vyhodnocuje jednou za celý hotel (řádek „Hotel …“ nad seznamem variant), aby vyhovující pokoj nevypadal jako nevyhovující kvůli pláži. Obojí se ve výsledku stále slučuje bytovou kombinací – hotel vyhoví jen tehdy, když platí jeho hotelové podmínky a zároveň existuje varianta splňující podmínky pokojové. Nepotvrzuje dostupnost zájezdu. Chybějící údaj se nezaměňuje za neshodu; známá neshoda má přednost před nejistotou.
 
-Přepínač **Zobrazit i nevyhovující** je výchozí zapnutý. Po vypnutí skutečné filtrování ponechá hotely s alespoň jednou vhodnou variantou; uvnitř hotelu stále ukazuje všechny typy. Textové hledání a oblíbené fungují v obou režimech. CSV obsahuje podkladové hodnoty, nikoli grafické ikonky.
+Přepínač **Zobrazit i nevyhovující** je výchozí zapnutý. Po vypnutí skutečné filtrování ponechá hotely s alespoň jednou vhodnou variantou; uvnitř hotelu stále ukazuje všechny typy. Textové hledání a oblíbené fungují v obou režimech. CSV obsahuje podkladové hodnoty, nikoli grafické ikonky (sloupce „Hodnocení pokoje“ a „Hodnocení hotelu“ nesou slovní verdikt).
+
+**Pořadí a vypisování (v8).** I ve výchozím režimu se výsledek řadí podle shody s aktuálně vybranými podmínkami: nejdřív hotely s doloženou variantou (✓), pak hotely k ověření (?), nakonec hotely s doloženou neshodou (✕). Uvnitř hotelu jsou ✓ varianty první a mají rovnou rozbalené podrobnosti (údaje, popis, nejlevnější nabídka s odkazem na EXIM); ? varianty jsou sbalené na jeden řádek s důvodem; ✕ varianty se **nevypisují** – jen se počítají a dají se rozbalit přes „Skryto N nevyhovujících variant“. Vedle karet je **přehledová tabulka**: hotel v řádku, sloupec za každou vlastnost se značkou ✓/✕/? (sloupce aktivních filtrů zvýrazněné), jedna řádka za každou vyhovující nebo neověřenou variantu, cena od a celkový verdikt. Řazení lze přepnout na cenu nebo název.
 
 Referenční výsledek v kompletní dodané databázi: **3 vyhovující varianty, 16 k ověření, 24 nevyhovujících**. Vyhovují dvě rodinné varianty Aldemaru a Comfortable Suite z oficiálního webu Kalogrie. Hotelový typ Kalogria není automaticky přiřazen k nabídce EXIM. Po aktualizaci dat se počty mohou změnit; nejsou pevnou podmínkou programu.
 
@@ -118,7 +120,7 @@ Zachovejte **jeden worker**: fronta importů je v procesu, průběh je v SQLite.
 
 1. Klikněte na **Naše rodina**. Vybere oddělené místnosti, dvě samostatné dětské postele, bez palandy a písek včetně vstupu. Výslovné dveře nevyžaduje.
 2. Volitelně zapněte **Pozvolný vstup do moře** a minimální plochu.
-3. Ve výchozím přehledu zůstanou všechny varianty viditelné a označené. Vypněte **Zobrazit i nevyhovující**, chcete-li hotely skutečně skrývat. Nad kompletní dodanou databází aktuální rodinná kombinace ponechá **2 hotely se 3 vyhovujícími variantami**. Pokud navíc vyžádáte výslovné potvrzení dveří, tento přísnější výběr vrátí 0 doložených shod.
+3. Ve výchozím přehledu jsou hotely seřazené podle shody a vyhovující varianty jsou první s rozbalenými podrobnostmi; nevyhovující varianty jsou jen spočítané a sbalené. Přepněte na **Tabulka**, chcete-li hotely porovnat sloupec po sloupci. Vypněte **Zobrazit i nevyhovující**, chcete-li hotely skutečně skrývat. Nad kompletní dodanou databází aktuální rodinná kombinace ponechá **2 hotely se 3 vyhovujícími variantami**. Pokud navíc vyžádáte výslovné potvrzení dveří, tento přísnější výběr vrátí 0 doložených shod.
 4. Zapněte **Zahrnout neověřené**. Uvidíte kandidáty, kteří nemají známou neshodu ve všech požadovaných polích daného typu.
 5. V detailu porovnejte konkrétní pokoje a přečtěte citace. Neověřené položky potvrďte u prodejce nebo hotelu a zapište přes **Ověřit údaj**.
 
@@ -239,8 +241,9 @@ Tabulky: `hotels`, `rooms`, `sources`, `fields`, `facts`, `jobs`. SQLite má ciz
 
 ### API
 
-- `GET /api/hotels?q=...&filters=...&unknown=0&page=1`
+- `GET /api/hotels?q=...&filters=...&rank=...&unknown=0&sort=match|price|name&page=1&size=24` — `filters` skutečně filtruje, `rank` (výchozí = `filters`) jen hodnotí a řadí; odpověď nese `summary`/`hotel_summary` za celý výběr a u každé položky `state`, `hotel_state`, `rank`, `counts`, `price_from`, u variant `state` (seznam je bez úplných popisů a historie – ty má detail)
 - `GET /api/hotels/<id>` — úplný detail a archiv
+- `GET /api/hotel-urls` — jen `{id,url,fetch_url}` pro hromadné obnovení
 - `GET /api/fields`, `POST /api/fields`
 - `POST /api/facts` — ruční ověření
 - `POST /api/import`, `GET /api/jobs`

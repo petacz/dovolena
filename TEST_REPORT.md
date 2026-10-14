@@ -144,6 +144,29 @@ Nácvik obnovy katalogu `tools/refresh_catalog.py --archive tests/fixtures/catal
 
 Žádné síťové volání: režim pracuje výhradně s texty, které už jsou v databázi.
 
+### 14. 10. 2026: `--reparse` nasazen do dodaných databází
+
+Po schválení zadavatelem („udělej to, pokud to pomůže“) proběhl nácvik na kopiích a poté ostrý přepočet
+`reports/final/hotels.sqlite` i `reports/prices-2027/hotels.sqlite` (`--no-backup`, záloha je historie gitu;
+reporty `reports/*/reparse-2026-10-14.json` s úplným výčtem, `--list-cap 0`). `data/hotels.sqlite` přepočet nemění (0 rozdílů).
+
+| Měřeno (`reports/prices-2027`, 192 hotelů, 937 typů) | Před | Po |
+|---|---:|---:|
+| doložené fakty celkem | 652 | **745** (+99 doložených, 6 stažených, 0 změněných) |
+| `separate` známo u variant | 109 | **165** |
+| `doors` známo u variant | 32 | **69** |
+| filtr *oddělené místnosti + písek*: ✓ variant / hotelů s ✓ | 93 / 55 | **149 / 75** |
+| filtr *oddělené + dveře + písek*: ✓ variant / hotelů s ✓ | 16 / 9 | **52 / 24** |
+| rodinná předvolba (oddělené + 2 lůžka + bez palandy + písek) | ✓ 2 / ? 887 / ✕ 48 | **beze změny** |
+| integrita, cenové nabídky, ruční ověření | ok / 544 / 0 | ok / 544 / 0 |
+| opakovaný běh | – | 0 nových, 0 změněných, 0 ztracených |
+
+Šest stažených faktů jsou tři suity Senseana Sea Side Resort („jedna prostornější místnost **nebo** dvě místnosti
+oddělené posuvnými dveřmi“): alternativní dispozice byla dřív mylně `✓ separate` i `✓ doors`, nyní je `?`.
+Rodinnou předvolbu přepočet nemění, protože úzkým hrdlem zůstávají „2 samostatná lůžka“ (doložena u 2 z 937 typů)
+a „bez palandy“ (38 typů) — to nový parser z popisů nevyčte, jen prodejce nebo hotel.
+Off-line sada po nasazení: **120 passed, 1 skipped**.
+
 ### 12. 10. 2026 v noci: rozdělení hodnocení podle roviny (pokoj vs. hotel)
 
 | Kontrola | Výsledek |
