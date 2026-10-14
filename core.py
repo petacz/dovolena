@@ -234,13 +234,41 @@ def match(facts,filters,unknown):
   if op=='contains' and fold(want) not in fold(v):return False
  return True
 
-def search(q='',filters=None,unknown=False):
- filters=filters or []
+# Three states of one record against the selected criteria, evaluated at a single scope.
+# A proven mismatch beats missing evidence; missing evidence is never a failure.
+ROOM_ORDER=('pass','none','unknown','fail')          # order of variants inside a hotel
+RANK={'pass':0,'none':0,'unknown':1,'fail':2}         # order of hotels: proven match, uncertain, proven mismatch
+def state(facts,criteria):
+ if not criteria:return 'none'
+ if not match(facts,criteria,True):return 'fail'
+ return 'pass' if match(facts,criteria,False) else 'unknown'
+
+def assess(h,hf,rf):
+ """Hotel-level and room-level verdicts for the chosen criteria; the hotel verdict combines both scopes."""
+ hs=state(h['facts'],hf)
+ if h.get('import_status')=='incomplete' and hs in ('pass','none'):hs='unknown'
+ for r in h['rooms']:r['state']=state(r['facts'],rf)
+ best=min((RANK[r['state']] for r in h['rooms']),default=1 if rf else 0)
+ overall=max(RANK[hs],best)
+ h['hotel_state']=hs;h['rank']=overall
+ h['state']='none' if not (hf or rf) else ['pass','unknown','fail'][overall]
+ h['counts']={s:sum(1 for r in h['rooms'] if r['state']==s) for s in ('pass','unknown','fail','none')}
+
+def room_price(r):
+ offers=r.get('offers') or []
+ return offers[0]['total'] if offers else None
+
+def search(q='',filters=None,unknown=False,rank=None,sort='match'):
+ """filters: hard filter (hotel must have a matching room). rank: criteria used only for verdicts and
+ ordering, so the default "show everything" view can still put proven matches first. Defaults to filters."""
+ filters=filters or [];rank=filters if rank is None else rank
+ if sort not in ('match','price','name'):raise ValueError('Neznámé řazení.')
  with connect() as c:
   fields={r['key']:r['scope'] for r in c.execute('SELECT * FROM fields')}
   hf=[f for f in filters if fields.get(f['key'])=='hotel'];rf=[f for f in filters if fields.get(f['key'])=='room']
+  rhf=[f for f in rank if fields.get(f['key'])=='hotel'];rrf=[f for f in rank if fields.get(f['key'])=='room']
   # SQL prefilter then evaluate extensible facts, always at the same room level.
-  rows=c.execute('''SELECT * FROM hotels h WHERE ?='' OR fold(h.name||' '||h.location||' '||h.sections) LIKE ? OR EXISTS(SELECT 1 FROM rooms r WHERE r.hotel_id=h.id AND fold(r.name||' '||r.description) LIKE ?) ORDER BY h.name''',(q,'%'+fold(q)+'%','%'+fold(q)+'%')).fetchall()
+  rows=c.execute('''SELECT * FROM hotels h WHERE ?='' OR fold(h.name||' '||COALESCE(h.location,'')||' '||h.sections) LIKE ? OR EXISTS(SELECT 1 FROM rooms r WHERE r.hotel_id=h.id AND fold(r.name||' '||r.description) LIKE ?) ORDER BY h.name''',(q,'%'+fold(q)+'%','%'+fold(q)+'%')).fetchall()
   out=[]
   for row in rows:
    h=hotel_record(c,row)
@@ -248,6 +276,15 @@ def search(q='',filters=None,unknown=False):
    if not match(h['facts'],hf,unknown):continue
    matches=[r for r in h['rooms'] if match(r['facts'],rf,unknown)]
    if rf and not matches and not (unknown and not h['rooms']):continue
-   h['matching_rooms']=[r['id'] for r in matches];out.append(h)
+   h['matching_rooms']=[r['id'] for r in matches]
+   assess(h,rhf,rrf)
+   # Proven matches first inside the hotel, then priced variants; the order is shared by cards, table and CSV.
+   h['rooms'].sort(key=lambda r:(ROOM_ORDER.index(r['state']),room_price(r) is None,room_price(r) or 0,r['id']))
+   prices=[p for p in [room_price(r) for r in h['rooms']]+[o['total'] for o in h.get('unmapped_offers') or []] if p is not None]
+   h['price_from']=min(prices) if prices else None
+   out.append(h)
+ if sort=='match':out.sort(key=lambda h:(h['rank'],-h['counts']['pass'],fold(h['name']),h['id']))
+ elif sort=='price':out.sort(key=lambda h:(h['price_from'] is None,h['price_from'] or 0,fold(h['name']),h['id']))
+ else:out.sort(key=lambda h:(fold(h['name']),h['id']))
  return out
 init()

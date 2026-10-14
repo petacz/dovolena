@@ -2,7 +2,7 @@
 import json,sqlite3
 from pathlib import Path
 import pytest
-from playwright.sync_api import expect
+expect=pytest.importorskip('playwright.sync_api',reason='Chromium E2E vyžaduje playwright + stažené Chromium').expect
 from conftest import ROOT
 pytestmark=pytest.mark.chromium
 

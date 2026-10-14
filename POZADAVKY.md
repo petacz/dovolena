@@ -85,11 +85,18 @@ Výchozí obrazovka zobrazuje **všechny evidované varianty pokoje u každého 
 
 Doložená neshoda má přednost před chybějícími údaji. Uvést všechny relevantní důvody, nejen barevnou ikonu. Hodnotit **podle aktuální volby filtrů**, nikoli stále podle napevno uloženého skóre. Bez vybraných podmínek nepředstírat ověřenou vhodnost.
 
-Hotelové podmínky (pláž, vzdálenost, případně pozvolný vstup) jsou vlastností celého hotelu, proto se vyhodnocují a ukazují **jednou za hotel** — řádek nad seznamem variant, ne opakování u každého pokoje. Vyhovující variota kvůli nim neztrácí ✓; opačně hotel vyhoví jen tehdy, když platí jeho hotelové podmínky **a** zároveň existuje varianta splňující všechny pokojové podmínky. Pokojové podmínky se musí všechny sejít na **stejném typu pokoje**. Plochu jedné varianty nelze zkombinovat s lůžky jiné.
+Hotelové podmínky (pláž, vzdálenost, případně pozvolný vstup) jsou vlastností celého hotelu, proto se vyhodnocují a ukazují **jednou za hotel** — řádek nad seznamem variant, ne opakování u každého pokoje. Vyhovující varianta kvůli nim neztrácí ✓; opačně hotel vyhoví jen tehdy, když platí jeho hotelové podmínky **a** zároveň existuje varianta splňující všechny pokojové podmínky. Pokojové podmínky se musí všechny sejít na **stejném typu pokoje**. Plochu jedné varianty nelze zkombinovat s lůžky jiné.
+
+**Pořadí a vypisování (upřesnění 14. 10. 2026).** „Zobrazit všechny varianty“ znamená, že žádná varianta se neztratí z evidence a je dohledatelná, ne že se všechny tisknou se stejnou vahou:
+- **✓ varianty jsou první** a jejich podrobnosti (doložené údaje, popis, nejlevnější nabídka se zdrojem) jsou vidět **bez proklikávání**;
+- **? varianty** následují sbalené na jeden řádek s důvodem („zdroj neuvádí: …“), rozbalí se kliknutím;
+- **✕ varianty se nevypisují**; karta uvede jen jejich počet a nabídne „Skryto N nevyhovujících variant“ pro rozbalení (zůstávají v DOM i v CSV, aby se nic neztratilo);
+- **hotely se řadí podle nejlepší varianty** a hotelového verdiktu: nejdřív doložené shody, pak k ověření, nakonec doložené neshody; uvnitř stejného stupně více ✓ variant, pak název. Volitelně řazení podle ceny nebo názvu.
+- Vedle karet existuje **přehledová tabulka**: hotel = řádek, sloupec za každou vlastnost (hotelové i pokojové, včetně vlastních) se značkou ✓/✕/? nebo číslem, sloupce aktuálně vybraných filtrů zvýrazněné; jedna řádka za každou ✓/? variantu (další varianty téhož hotelu sbalené), cena od a celkový verdikt. Hotel bez ✓/? varianty má jednu řádku s počtem nevyhovujících.
 
 ### P-09: Dva režimy výběru
 
-Výchozí režim „Zobrazit i nevyhovující“ ponechá všechny vyhledané hotely i jejich pokoje a jen označí shodu. Aktivní textové hledání a výběr oblíbených platí i zde.
+Výchozí režim „Zobrazit i nevyhovující“ ponechá všechny vyhledané hotely i jejich pokoje a jen označí shodu a podle ní výsledek **seřadí** (viz P-08). Přepínač „Zahrnout neověřené“ v tomto režimu nemá na co působit, proto je neaktivní. Aktivní textové hledání a výběr oblíbených platí i zde.
 
 Volitelné skutečné filtrování ponechá hotel jen tehdy, když alespoň jedna jeho varianta splní všechny vybrané podmínky. Přepínač „Zahrnout neověřené“ může ponechat i kandidáty s chybějícími údaji, ne však variantu se známou neshodou. I u ponechaných hotelů zobrazovat všechny varianty s hodnocením.
 

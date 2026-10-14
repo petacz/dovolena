@@ -30,26 +30,51 @@ def add_field():
   if c.execute('select 1 from fields where key=?',(k,)).fetchone():raise ValueError('Klíč už existuje.')
   c.execute('insert into fields values(?,?,?,?)',(k,label[:100],s,t))
  return jsonify(ok=True)
-def query():
- filters=json.loads(request.args.get('filters','[]'))
- if not isinstance(filters,list) or len(filters)>30:raise ValueError('Neplatné filtry.')
- with connect() as c:valid={r['key']:dict(r) for r in c.execute('select * from fields')}
- for f in filters:
+def criteria(name,valid):
+ """Validated list of {key,op,value} from a JSON query parameter; `filters` filters, `rank` only judges and orders."""
+ try:items=json.loads(request.args.get(name,'[]'))
+ except ValueError:raise ValueError('Neplatné filtry.')
+ if not isinstance(items,list) or len(items)>30:raise ValueError('Neplatné filtry.')
+ for f in items:
   if not isinstance(f,dict) or f.get('key') not in valid or f.get('op','eq') not in ['eq','min','max','contains'] or 'value' not in f:raise ValueError('Neplatný filtr.')
   t=valid[f['key']]['type']
   if t=='number' and (not isinstance(f['value'],(int,float)) or isinstance(f['value'],bool)):raise ValueError('Číselný filtr vyžaduje číslo.')
   if t=='bool' and not isinstance(f['value'],bool):raise ValueError('Filtr vyžaduje ano/ne.')
- result=search(request.args.get('q',''),filters,request.args.get('unknown')=='1')
+  if t=='text' and not isinstance(f['value'],str):raise ValueError('Textový filtr vyžaduje text.')
+  if f.get('op','eq') not in {'bool':['eq'],'number':['eq','min','max'],'text':['eq','contains']}[t]:raise ValueError('Operátor neodpovídá typu vlastnosti.')
+ return items
+def query():
+ with connect() as c:valid={r['key']:dict(r) for r in c.execute('select * from fields')}
+ filters=criteria('filters',valid);rank=criteria('rank',valid) if 'rank' in request.args else None
+ sort=request.args.get('sort','match')
+ if sort not in ('match','price','name'):raise ValueError('Neznámé řazení.')
+ result=search(request.args.get('q',''),filters,request.args.get('unknown')=='1',rank,sort)
  if 'ids' in request.args:
-  ids={int(x) for x in request.args.get('ids','').split(',') if x}
+  try:ids={int(x) for x in request.args.get('ids','').split(',') if x}
+  except ValueError:raise ValueError('Neplatný seznam id.')
   result=[h for h in result if h['id'] in ids]
  return result
+def number(name,default,low,high):
+ try:return min(high,max(low,int(request.args.get(name,default))))
+ except ValueError:raise ValueError(f'Parametr {name} musí být celé číslo.')
+def slim(h):
+ """List payload: no full description sections and no fact history; the detail endpoint carries both."""
+ h=dict(h);sections=h.pop('sections',{});h.pop('fetch_url',None);h['category']=sections.get('Oficiální kategorie')
+ h['facts']={k:{x:y for x,y in f.items() if x!='history'} for k,f in h['facts'].items()}
+ h['rooms']=[{**r,'facts':{k:{x:y for x,y in f.items() if x!='history'} for k,f in r['facts'].items()}} for r in h['rooms']]
+ return h
 @app.get('/api/hotels')
 def hotels():
  items=query()
  with connect() as c:total=c.execute('SELECT count(*) FROM hotels').fetchone()[0];rooms=c.execute('SELECT count(*) FROM rooms WHERE active=1').fetchone()[0]
- page=max(1,int(request.args.get('page',1)));size=24
- return jsonify(items=items[(page-1)*size:page*size],total=len(items),catalog_total=total,room_total=rooms,page=page,pages=max(1,(len(items)+size-1)//size))
+ page=number('page',1,1,10**6);size=number('size',24,1,200)
+ summary={s:sum(h['counts'][s] for h in items) for s in ('pass','unknown','fail','none')}
+ hotels_summary={s:sum(1 for h in items if h['state']==s) for s in ('pass','unknown','fail','none')}
+ return jsonify(items=[slim(h) for h in items[(page-1)*size:page*size]],total=len(items),catalog_total=total,room_total=rooms,page=page,pages=max(1,(len(items)+size-1)//size),size=size,summary=summary,hotel_summary=hotels_summary)
+@app.get('/api/hotel-urls')
+def hotel_urls():
+ """Lightweight list for re-importing the whole catalog; no need to page through full records."""
+ with connect() as c:return jsonify([dict(r) for r in c.execute('SELECT id,url,fetch_url FROM hotels ORDER BY id')])
 @app.get('/api/hotels/<int:hid>')
 def hotel(hid):
  with connect() as c:
@@ -99,7 +124,8 @@ def jobs():
 def export_csv():
  items=query();s=io.StringIO();w=csv.writer(s)
  with connect() as c:keys=[r['key'] for r in c.execute('SELECT key FROM fields')]
- w.writerow(['Hotel','Lokalita','Pokoj','Původ','Zdroj']+keys)
+ w.writerow(['Hotel','Lokalita','Pokoj','Původ','Zdroj']+keys+['Hodnocení pokoje','Hodnocení hotelu'])
+ verdict={'pass':'vyhovuje','unknown':'k ověření','fail':'nevyhovuje','none':'bez požadavků'}
  def safe(x):
   s=str(x)
   return "'"+s if s.startswith(('=','+','-','@','\t','\r')) else s
@@ -107,7 +133,7 @@ def export_csv():
   for r in h['rooms']:
    if r['id'] not in h['matching_rooms']:continue
    vals={**h['facts'],**r['facts']}
-   w.writerow([safe(x) for x in [h['name'],h['location'],r['name'],r['origin'],h['url']]]+[('neuvedeno' if vals.get(k,{}).get('value') is None else vals[k]['value']) for k in keys])
+   w.writerow([safe(x) for x in [h['name'],h['location'],r['name'],r['origin'],h['url']]]+[('neuvedeno' if vals.get(k,{}).get('value') is None else vals[k]['value']) for k in keys]+[verdict[r['state']],verdict[h['hotel_state']]])
  return Response('\ufeff'+s.getvalue(),mimetype='text/csv',headers={'Content-Disposition':'attachment; filename=hotely.csv'})
 @app.get('/api/backup')
 def backup():

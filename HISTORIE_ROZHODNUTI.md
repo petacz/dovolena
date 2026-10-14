@@ -133,3 +133,27 @@ Drobnost, která vyšla najevo u přepočtu: `reports/final` i `reports/prices-2
 192 řádků) — EXIM uvádí týž hotel pod dvěma letovisky, a protože deduplikace běží podle URL,
 nesloučil je. `--reparse` oba záznamy přepočítá zvlášť a shodně; jejich sloučení je
 samostatné rozhodnutí, zatím nedělané.
+
+## 14. 10. 2026: vyhovující první, nevyhovující jen spočítané, tabulka vedle karet
+
+Zadavatel po prohlídce 192hotelové databáze upřesnil, že „zobrazit všechny varianty“ nemá
+znamenat 937 stejně vážených řádků v abecedním pořadí: vyhovující varianta má být první a
+její podrobnosti vidět hned, nevyhovující se nemá vypisovat vůbec a hotely chce porovnat
+v tabulce se značkou ✓/✕ za každou vlastnost podle aktuálních filtrů.
+
+Rozhodnutí: verdikt se nově počítá i na serveru (`core.state/assess`) ze stejných faktů a
+stejných kritérií jako v prohlížeči, protože podle něj musí být seřazené celé stránkování,
+ne jen jedna stránka. `/api/hotels` proto rozlišuje `filters` (tvrdý filtr, beze změny
+chování) a `rank` (jen hodnocení a pořadí; výchozí režim posílá `filters=[]` a `rank` =
+vybrané podmínky). Pořadí hotelů: doložená shoda → k ověření → doložená neshoda, uvnitř
+stupně více ✓ variant a název; uvnitř hotelu ✓ → bez požadavku → ? → ✕, pak cena. ✕ varianty
+zůstávají v DOM (sbalené v „Skryto N nevyhovujících“), v CSV (nový sloupec s verdiktem) i
+v počtech, takže platí P-08 „nic se neztratí“ a zároveň se netisknou. Seznamové JSON už
+nenese úplné popisy a historii faktů (–40 % objemu); má je detail.
+
+Vedlejší opravy při tom: hledání padalo u hotelu s prázdnou lokalitou (`NULL` v SQL
+konkatenaci), špatně typované filtry vracely 500 místo 400, hromadné obnovení katalogu
+stahovalo všechny stránky výpisu kvůli adresám (nově `/api/hotel-urls`), a `pytest` bez
+nainstalovaného Playwrightu padal při sběru testů místo přeskočení Chromium sady.
+Rozhodnuto nebylo: přepočet (`--reparse`) uložených databází opraveným parserem — mění
+73 variant a čeká na výslovné schválení.
