@@ -155,5 +155,10 @@ Vedlejší opravy při tom: hledání padalo u hotelu s prázdnou lokalitou (`NU
 konkatenaci), špatně typované filtry vracely 500 místo 400, hromadné obnovení katalogu
 stahovalo všechny stránky výpisu kvůli adresám (nově `/api/hotel-urls`), a `pytest` bez
 nainstalovaného Playwrightu padal při sběru testů místo přeskočení Chromium sady.
-Rozhodnuto nebylo: přepočet (`--reparse`) uložených databází opraveným parserem — mění
-73 variant a čeká na výslovné schválení.
+Přepočet (`--reparse`) uložených databází opraveným parserem zadavatel následně schválil
+(„pokud to pomůže“) a byl nasazen do `reports/final` i `reports/prices-2027`: +99 doložených
+faktů (59× oddělené místnosti, 40× dveře), 6 stažených — tři suity Senseana s alternativní
+dispozicí „jedna místnost nebo dvě“ už nejsou mylně ✓, ale `?`. Pomáhá tabulce a důvodům u
+variant (u 56 typů navíc víme, že jsou oddělené), nemění však výsledek rodinné předvolby:
+úzkým hrdlem zůstávají lůžka pro děti a palanda, které popisy EXIM téměř neuvádějí.
+`data/hotels.sqlite` se přepočtem nemění. Reporty: `reports/*/reparse-2026-10-14.json`.
